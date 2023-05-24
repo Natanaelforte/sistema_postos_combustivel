@@ -1,5 +1,5 @@
 """
-WSGI config for abastecimento_posto project.
+WSGI config for _abastecimento_posto project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abastecimento_posto.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_abastecimento_posto.settings')
 
 application = get_wsgi_application()

@@ -2,7 +2,13 @@ from django.db import models
 
 
 class Posto(models.Model):
-    razao_social = models.CharField(max_length=100)
-    cnpj = models.IntegerField(max_length=100)
-    contato = models.IntegerField(max_length=100)
-    endereco = models.CharField(max_length=300)
+    razao_social = models.CharField(verbose_name='Razão Social', max_length=100)
+    cnpj = models.CharField(max_length=100)
+    contato = models.CharField(max_length=100)
+    endereco = models.CharField(verbose_name='Endereço',max_length=300)
+
+    class Meta:
+        db_table = 'Posto'
+        verbose_name = ''
+        verbose_name_plural = ''
+        ordering = []
