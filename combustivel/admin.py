@@ -1,3 +1,4 @@
 from django.contrib import admin
+from combustivel.models import Combustivel
 
-# Register your models here.
+admin.site.register(Combustivel)

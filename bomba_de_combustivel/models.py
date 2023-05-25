@@ -8,3 +8,9 @@ class Bomba(models.Model):
 
     def __str__(self):
         return f'Bomba {self.numero_bomba}'
+
+    class Meta:
+        db_table = 'Bomba de Combustível'
+        verbose_name = 'Bomba de Combustível'
+        verbose_name_plural = 'Bombas de Combustível'
+        ordering = []

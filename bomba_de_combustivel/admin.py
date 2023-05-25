@@ -1,3 +1,4 @@
 from django.contrib import admin
+from bomba_de_combustivel.models import Bomba
 
-# Register your models here.
+admin.site.register(Bomba)

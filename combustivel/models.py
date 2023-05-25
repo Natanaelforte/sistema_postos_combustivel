@@ -16,3 +16,9 @@ class Combustivel(models.Model):
 
     def __str__(self):
         return self.tipo_de_combustivel
+
+    class Meta:
+        db_table = 'Combustivel'
+        verbose_name = 'Combustível'
+        verbose_name_plural = 'Combustíveis'
+        ordering = []

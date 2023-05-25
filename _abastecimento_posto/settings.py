@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'colaborador',
     'combustivel',
     'posto',
-    'tanque'
+    'tanque',
+    'funcao'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING_CONFIG = None

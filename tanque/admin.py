@@ -1,3 +1,4 @@
 from django.contrib import admin
+from tanque.models import Tanque
 
-# Register your models here.
+admin.site.register(Tanque)
