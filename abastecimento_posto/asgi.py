@@ -1,5 +1,5 @@
 """
-ASGI config for _abastecimento_posto project.
+ASGI config for abastecimento_posto project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_abastecimento_posto.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abastecimento_posto.settings')
 
 application = get_asgi_application()
