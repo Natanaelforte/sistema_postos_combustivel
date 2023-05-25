@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'combustivel',
     'posto',
     'tanque',
-    'funcao'
+    'funcao',
+    'virgencia_de_preco'
 ]
 
 MIDDLEWARE = [
