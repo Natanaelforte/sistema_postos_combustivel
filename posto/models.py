@@ -7,11 +7,10 @@ class Posto(models.Model):
     contato = models.CharField(max_length=100)
     endereco = models.CharField(verbose_name='Endereço',max_length=300)
 
-    def __str__(self):
-        return f'{self.razao_social} / {self.cnpj}'
-
     class Meta:
         db_table = 'Posto'
         verbose_name = 'Posto de Combustível'
         verbose_name_plural = 'Postos de Combustível'
-        ordering = []
+
+    def __str__(self):
+        return f'{self.razao_social} / {self.cnpj}'

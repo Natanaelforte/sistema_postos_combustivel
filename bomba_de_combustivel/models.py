@@ -9,11 +9,10 @@ class Bomba(models.Model):
     numero = models.IntegerField(null=True, blank=True)
     tanques = models.ManyToManyField('tanque.Tanque')
 
-    def __str__(self):
-        return f'Bomba {self.numero}'
-
     class Meta:
         db_table = 'Bomba de Combustível'
         verbose_name = 'Bomba de Combustível'
         verbose_name_plural = 'Bombas de Combustível'
 
+    def __str__(self):
+        return f'Bomba {self.numero} / {self.posto}.'

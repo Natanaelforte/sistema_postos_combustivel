@@ -14,14 +14,13 @@ class Abastecimento(models.Model):
     litros_abastecido = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
     data = models.DateTimeField('Data do abastecimento')
 
-    def __str__(self):
-        return f'Abastecido por, {self.colaborador}, na {self.bomba} as {self.data.strftime("%H:%M:%S, %d/%m/%Y")}.'
-
     class Meta:
         db_table = 'Abastecimento'
         verbose_name = 'Abastecimento'
         verbose_name_plural = 'Abastecimentos'
 
+    def __str__(self):
+        return f'Abastecido por, {self.colaborador}, na {self.bomba} as {self.data.strftime("%H:%M:%S, %d/%m/%Y")}.'
 
     @property
     def valor_total(self):
