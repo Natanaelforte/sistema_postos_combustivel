@@ -20,7 +20,7 @@ class VigenciaDePreco(models.Model):
         verbose_name_plural = 'Vigência de preços'
 
     def __str__(self):
-        return f'{self.combustivel} / {self.posto} / {self.ativo_display}'
+        return f'{self.combustivel} / {self.ativo_display}'
 
     @property
     def ativo_display(self):

@@ -14,4 +14,4 @@ class Tanque(models.Model):
         verbose_name_plural = 'Tanques de Combustível'
 
     def __str__(self):
-        return f'Tanque / {self.combustivel} / {self.posto}'
+        return f'Tanque / {self.combustivel}'

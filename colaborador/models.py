@@ -17,4 +17,4 @@ class Colaborador(models.Model):
         verbose_name_plural = 'Colaboradores'
 
     def __str__(self):
-        return f'{self.nome} / {self.funcao} / {self.posto}'
+        return f'{self.nome} / {self.funcao}'

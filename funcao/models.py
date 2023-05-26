@@ -14,4 +14,4 @@ class Funcao(models.Model):
         verbose_name_plural = 'Funções'
 
     def __str__(self):
-        return f'{self.descricao} / {self.posto}'
+        return f'{self.descricao}'
