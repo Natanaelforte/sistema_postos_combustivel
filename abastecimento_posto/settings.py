@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'posto',
     'tanque',
     'funcao',
-    'virgencia_de_preco'
+    'virgencia_de_preco',
+    'acesso'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGGING_CONFIG = None
 
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
