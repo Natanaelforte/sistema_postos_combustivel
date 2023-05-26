@@ -1,8 +1,10 @@
 from django.db import models
 from combustivel.models import Combustivel
+from posto.models import Posto
 
 
 class VigenciaDePreco(models.Model):
+    posto = models.ForeignKey(Posto, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Posto')
     combustivel = models.ForeignKey(
         Combustivel, on_delete=models.CASCADE, related_name='vigencias_de_precos', verbose_name='Combustivel',
         blank=True, null=True
@@ -16,7 +18,7 @@ class VigenciaDePreco(models.Model):
         db_table = 'Vigencia_de_preco'
         verbose_name = 'Vigência de preço'
         verbose_name_plural = 'Vigência de preços'
-        ordering = []
+
 
     def __str__(self):
         return f'{self.combustivel} / {self.ativo_display}'

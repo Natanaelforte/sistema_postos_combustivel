@@ -1,13 +1,13 @@
 
 
-gasolina = 1
-gasolina_ad = 2
-disel = 3
-disel_ad = 4
+GASOLINA = 1
+GASOLINA_AD = 2
+DISEL = 3
+DISEL_AD = 4
 
-tipo_de_combustivel_choice = [
-    (gasolina, 'Gasolina'),
-    (gasolina_ad, 'Gasolina Aditivada'),
-    (disel, 'Disel'),
-    (disel_ad, 'Disel Aditivado')
+C_TIPO_DE_COMBUSTIVEL = [
+    (GASOLINA, 'Gasolina'),
+    (GASOLINA_AD, 'Gasolina Aditivada'),
+    (DISEL, 'Disel'),
+    (DISEL_AD, 'Disel Aditivado')
 ]

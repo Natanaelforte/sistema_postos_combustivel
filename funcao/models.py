@@ -14,4 +14,4 @@ class Funcao(models.Model):
         db_table = 'Função'
         verbose_name = 'Função'
         verbose_name_plural = 'Funções'
-        ordering = []
+
