@@ -2,10 +2,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-      <meta charset="UTF-8">
-      <title>Loguin</title>
-      <link rel="stylesheet" href="{% static 'acesso/style.css' %}">
-
+        <meta charset="UTF-8">
+        <title>Loguin</title>
+        <link rel="stylesheet" href="{% static 'acesso/style.css' %}">
     </head>
 
     <body>
@@ -15,33 +14,46 @@
             {% endif %}
 
             {% if next %}
-                    {% if user.is_authenticated %}
-                          <p>Your account doesn't have access to this page. To proceed,
-                          please login with an account that has access.</p>
-                    {% else %}
-                        <p>Please login to see this page.</p>
-                    {% endif %}
-              {% endif %}
+                {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+                {% else %}
+                    <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
 
-              <form method="post" action="{% url 'acesso:login' %}">
-                    {% csrf_token %}
-                    <table>
-                          <tr>
-                                <td>{{ form.username.label_tag }}</td>
-                                <td>{{ form.username }}</td>
-                          </tr>
-                          <tr>
-                                <td>{{ form.password.label_tag }}</td>
-                                <td>{{ form.password }}</td>
-                          </tr>
-                    </table>
-                    <input type="submit" value="login" />
-                    <input type="hidden" name="next" value="{{ next }}" />
-              </form>
+            <form method="post" action="{% url 'acesso:login' %}">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ form.posto.label_tag }}</td>
+                        <td>{{ form.posto }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
+
+                <input type="submit" value="login" />
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
 
               {# Assumes you setup the password_reset view in your URLconf #}
 {#              <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
-
         {% endblock %}
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script type="application/javascript" src="{% static 'acesso/script.js' %}"></script>
+
+        <script>
+            var urlApiPostos = {% url 'posto:list' %}
+
+
+        </script>
     </body>
 </html>

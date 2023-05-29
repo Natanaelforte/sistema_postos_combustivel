@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'tanque',
     'funcao',
     'virgencia_de_preco',
-    'acesso'
+    'acesso',
+    'inicio',
+    'usuario'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,5 @@ LOGGING_CONFIG = None
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTH_USER_MODEL = 'usuario.Usuario'
