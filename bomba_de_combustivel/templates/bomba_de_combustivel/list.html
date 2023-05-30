@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bombas de combustivel</title>
+</head>
+<body>
+    <h1>Bombas de combustivel</h1>
+    <ul>
+    {% for Bomba in object_list %}
+        <li>Bomba {{ Bomba.numero }} - {{ Bomba.posto }}</li>
+    {% empty %}
+        <li>Não há bombas relacionáda ao posto escolhido.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Função</title>
+</head>
+<body>
+    <h1>Funções</h1>
+    <ul>
+    {% for Funcao in object_list %}
+        <li>{{ Funcao.descricao}} - {{ Funcao.posto }}</li>
+    {% empty %}
+        <li>Não há funções relacionádas ao posto escolhido.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from combustivel.models import Combustivel
 
-# Create your views here.
+
+class CombustivelListViewl(ListView):
+    model = Combustivel
+    template_name = 'combustivel/list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(posto__pk=self.request.session['posto'])
+        return queryset

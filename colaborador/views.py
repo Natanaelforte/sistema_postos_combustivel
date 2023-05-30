@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 
 class ColaboradorListViewl(ListView):
     model = Colaborador
-    template_name = 'colaborador/colaborador_list.html'
+    template_name = 'colaborador/list.html'
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combustível</title>
+</head>
+<body>
+    <h1>Combustíveis</h1>
+    <ul>
+    {% for Combustivel in object_list %}
+        <li>{{ Combustivel.get_tipo_de_combustivel_display}} - {{ Combustivel.posto }}</li>
+    {% empty %}
+        <li>Não há combustíveis relacionádo ao posto escolhido.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

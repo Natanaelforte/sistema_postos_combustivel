@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tanques</title>
+</head>
+<body>
+    <h1>Tanques</h1>
+    <ul>
+    {% for Tanque in object_list %}
+        <li>{{ Tanque.combustivel}} - {{ Tanque.quantidade_litros }} Litros.</li>
+    {% empty %}
+        <li>Não há tamques relacionádos ao posto escolhido.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -23,5 +23,9 @@ urlpatterns = [
     path('acesso/', include('acesso.urls')),
     path('inicio/', include('inicio.urls')),
     path('posto/', include('posto.urls')),
-    path('cadastro_colaborador/', include('cadastro_colaborador.urls'))
+    path('lista_colaboradores/', include('colaborador.urls')),
+    path('lista_bombas/', include('bomba_de_combustivel.urls')),
+    path('lista_combustivel/', include('combustivel.urls')),
+    path('lista_funcao/', include('funcao.urls')),
+    path('lista_tanque/', include('tanque.urls'))
 ]
