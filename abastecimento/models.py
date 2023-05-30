@@ -33,5 +33,5 @@ class Abastecimento(models.Model):
 
     @property
     def valor_total_display(self):
-        return f'{self.valor_total:.2f}'
+        return f'R$ {self.valor_total:.2f}'
 

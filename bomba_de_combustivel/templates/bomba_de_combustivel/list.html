@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Bombas de combustivel</h1>
+
+    <a href="{% url 'bomba_de_combustivel:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Bomba in object_list %}
         <li>Bomba {{ Bomba.numero }} - {{ Bomba.posto }}</li>

@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Tanques</h1>
+
+    <a href="{% url 'tanque:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Tanque in object_list %}
         <li>{{ Tanque.combustivel}} - {{ Tanque.quantidade_litros }} Litros.</li>

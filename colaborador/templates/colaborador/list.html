@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Colaborador</h1>
+
+    <a href="{% url 'colaborador:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Colaborador in object_list %}
         <li>{{ Colaborador.nome }} - {{ Colaborador.funcao }} - {{ Colaborador.posto }}</li>

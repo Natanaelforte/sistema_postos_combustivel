@@ -7,4 +7,5 @@ app_name = 'tanque'
 
 urlpatterns = [
     path('', views.TanqueListViewl.as_view(), name='tanque_list'),
+    path('create/', views.TanqueCreate.as_view(), name='create')
 ]

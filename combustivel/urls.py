@@ -7,4 +7,5 @@ app_name = 'combustivel'
 
 urlpatterns = [
     path('', views.CombustivelListViewl.as_view(), name='combustivel_list'),
+    path('create/', views.CombustivelCreate.as_view(), name='create')
 ]

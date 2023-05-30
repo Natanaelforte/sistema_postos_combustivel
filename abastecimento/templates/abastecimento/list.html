@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Abastecimentos</h1>
+
+    <a href="{% url 'abastecimento:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Abastecimento in object_list %}
         <li>{{ Abastecimento.posto}} - {{ Abastecimento.combustivel.get_tipo_de_combustivel_display}}

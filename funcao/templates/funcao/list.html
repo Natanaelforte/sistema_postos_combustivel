@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Funções</h1>
+
+    <a href="{% url 'funcao:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Funcao in object_list %}
         <li>{{ Funcao.descricao}} - {{ Funcao.posto }}</li>

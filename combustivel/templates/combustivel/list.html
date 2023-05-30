@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Combustíveis</h1>
+
+    <a href="{% url 'combustivel:create' %}">Novo</a>
+    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+
     <ul>
     {% for Combustivel in object_list %}
         <li>{{ Combustivel.get_tipo_de_combustivel_display}} - {{ Combustivel.posto }}</li>

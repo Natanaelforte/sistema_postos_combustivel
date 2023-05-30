@@ -1,5 +1,9 @@
 from django.core.serializers import serialize
 from django.http import HttpResponse
+from django.urls import reverse
+from django.views.generic import CreateView
+
+from .forms import ColaboradorForm
 from .models import Colaborador
 from django.views.generic.list import ListView
 
@@ -14,9 +18,13 @@ class ColaboradorListViewl(ListView):
         return queryset
 
 
+class ColaboradorCreate(CreateView):
+    model = Colaborador
+    template_name = 'colaborador/form.html'
+    form_class = ColaboradorForm
 
-
-
+    def get_success_url(self):
+        return reverse('colaborador:colaborador_list')
 
 # def colaborador_json(request):
 #     username = request.GET.get('username', None)

@@ -6,5 +6,6 @@ from colaborador import views
 app_name = 'colaborador'
 
 urlpatterns = [
-    path('', views.ColaboradorListViewl.as_view(), name='colaborador_list')
+    path('', views.ColaboradorListViewl.as_view(), name='colaborador_list'),
+    path('create/', views.ColaboradorCreate.as_view(), name='create'),
 ]
