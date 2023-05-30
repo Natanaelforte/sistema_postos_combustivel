@@ -1,4 +1,5 @@
 from django.db import models
+
 from funcao.models import Funcao
 from posto.models import Posto
 

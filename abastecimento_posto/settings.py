@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'virgencia_de_preco',
     'acesso',
     'inicio',
-    'usuario'
+    'usuario',
+    'cadastro_colaborador'
 ]
 
 MIDDLEWARE = [
