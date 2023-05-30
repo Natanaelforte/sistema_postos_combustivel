@@ -1,3 +1,5 @@
+from unicodedata import decimal
+
 from django.db import models
 
 from bomba_de_combustivel.models import Bomba
@@ -26,5 +28,10 @@ class Abastecimento(models.Model):
     def valor_total(self):
         valor_vigente = self.combustivel.valor_vigente
         litros = self.litros_abastecido
-        valor = valor_vigente.valor * litros
+        valor = valor_vigente * litros
         return valor
+
+    @property
+    def valor_total_display(self):
+        return f'{self.valor_total:.2f}'
+

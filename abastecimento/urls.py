@@ -1,7 +1,9 @@
 from django.urls import path
 
+from abastecimento import views
+
 app_name = 'abastecimento'
 
 urlpatterns = [
-    path('', ),
+    path('', views.AbastecimentoListViewl.as_view(), name='abastecimento_list'),
 ]

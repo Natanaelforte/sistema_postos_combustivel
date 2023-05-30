@@ -27,5 +27,6 @@ urlpatterns = [
     path('lista_bombas/', include('bomba_de_combustivel.urls')),
     path('lista_combustivel/', include('combustivel.urls')),
     path('lista_funcao/', include('funcao.urls')),
-    path('lista_tanque/', include('tanque.urls'))
+    path('lista_tanque/', include('tanque.urls')),
+    path('lista_abastecimento/', include('abastecimento.urls'))
 ]

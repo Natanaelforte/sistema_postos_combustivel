@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Abastecimento</title>
+</head>
+<body>
+    <h1>Abastecimentos</h1>
+    <ul>
+    {% for Abastecimento in object_list %}
+        <li>{{ Abastecimento.posto}} - {{ Abastecimento.combustivel.get_tipo_de_combustivel_display}}
+            - Bomba {{ Abastecimento.bomba.numero}} - {{ Abastecimento.colaborador.nome}} /
+            {{ Abastecimento.colaborador.funcao}} - {{ Abastecimento.litros_abastecido}} litros -
+            {{ Abastecimento.valor_total_display}} - {{ Abastecimento.data}}
+        </li>
+    {% empty %}
+        <li>Não há abastecimentos relacionádos ao posto escolhido.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

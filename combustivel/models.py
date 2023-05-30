@@ -18,8 +18,8 @@ class Combustivel(models.Model):
 
     @property
     def valor_vigente(self):
-        vigencias_de_precos = self.vigencias_de_precos.objects.filter(
-            data_de_inicio__gte=datetime.now(), data_de_termino__lte=datetime.now(), ativo=True
+        vigencias_de_precos = self.vigencias_de_precos.filter(
+            data_de_inicio__lte=datetime.now(), data_de_termino__gte=datetime.now(), ativo=True
         )
 
         if vigencias_de_precos.exists():
