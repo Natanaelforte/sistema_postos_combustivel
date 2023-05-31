@@ -17,4 +17,4 @@ class TanqueForm(ModelForm):
         if posto_pk:
             combustivel = Combustivel.objects.filter(posto__pk=posto_pk)
 
-            self.fields['tanques'].queryset = combustivel
+            self.fields['combustivel'].queryset = combustivel

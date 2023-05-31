@@ -16,6 +16,12 @@ class TanqueCreateView(CreateBaseView):
     template_name = 'tanque/forms.html'
     form_class = TanqueForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'posto_pk': self.request.session['posto']})
+
+        return kwargs
+
     def get_success_url(self):
         return reverse('tanque:list')
 
