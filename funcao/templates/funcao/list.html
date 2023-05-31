@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Função</title>
@@ -11,8 +11,11 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Funcao in object_list %}
-        <li>{{ Funcao.descricao}} - {{ Funcao.posto }}</li>
+    {% for funcao in object_list %}
+        <li>{{ funcao.descricao}}
+            <a href="{% url 'funcao:update' funcao.pk %}">Editar</a>
+            <a href="{% url 'funcao:delete' funcao.pk %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Não há funções relacionádas ao posto escolhido.</li>
     {% endfor %}

@@ -11,8 +11,11 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Colaborador in object_list %}
-        <li>{{ Colaborador.nome }} - {{ Colaborador.funcao }} - {{ Colaborador.posto }}</li>
+    {% for colaborador in object_list %}
+        <li>{{ colaborador.nome }} - {{ colaborador.funcao }}
+            <a href="{% url 'colaborador:update' colaborador.pk %}">Editar</a>
+            <a href="{% url 'colaborador:delete' colaborador.pk %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Não há colaboradores relacionádo ao posto escolhido.</li>
     {% endfor %}

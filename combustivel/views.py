@@ -1,24 +1,35 @@
-from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
+from base.views import CreateBaseView, ListBaseView
 from combustivel.forms import CombustivelForm
 from combustivel.models import Combustivel
 
 
-class CombustivelListViewl(ListView):
+class CombustivelListView(ListBaseView):
     model = Combustivel
     template_name = 'combustivel/list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(posto__pk=self.request.session['posto'])
-        return queryset
 
-
-class CombustivelCreate(CreateView):
+class CombustivelCreateView(CreateBaseView):
     model = Combustivel
     template_name = 'combustivel/forms.html'
     form_class = CombustivelForm
 
     def get_success_url(self):
-        return reverse('combustivel:combustivel_list')
+        return reverse('combustivel:list')
+
+
+class CombustivelUpdateView(UpdateView):
+    model = Combustivel
+    fields = ['tipo_de_combustivel']
+    template_name = 'combustivel/update.html'
+
+    def get_success_url(self):
+        return reverse('combustivel:list')
+
+
+class CombustivelDeleteView(DeleteView):
+    model = Combustivel
+    template_name = 'combustivel/delete.html'
+    success_url = reverse_lazy("combustivel:list")

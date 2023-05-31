@@ -1,24 +1,36 @@
-from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
+from base.views import CreateBaseView, ListBaseView
 from funcao.forms import FuncaoForm
 from funcao.models import Funcao
 
 
-class FuncaoListViewl(ListView):
+
+class FuncaoListView(ListBaseView):
     model = Funcao
     template_name = 'funcao/list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(posto__pk=self.request.session['posto'])
-        return queryset
 
-
-class FuncaoCreate(CreateView):
+class FuncaoCreateView(CreateBaseView):
     model = Funcao
     template_name = 'funcao/forms.html'
     form_class = FuncaoForm
 
     def get_success_url(self):
-        return reverse('funcao:funcao_list')
+        return reverse('funcao:list')
+
+
+class FuncaoUpdateView(UpdateView):
+    model = Funcao
+    fields = ['codigo', 'descricao']
+    template_name = 'funcao/update.html'
+
+    def get_success_url(self):
+        return reverse('funcao:list')
+
+
+class FuncaoDeleteView(DeleteView):
+    model = Funcao
+    template_name = 'funcao/delete.html'
+    success_url = reverse_lazy("funcao:list")

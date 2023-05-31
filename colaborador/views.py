@@ -1,30 +1,38 @@
-from django.core.serializers import serialize
-from django.http import HttpResponse
-from django.urls import reverse
-from django.views.generic import CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
+from base.views import CreateBaseView, ListBaseView
 from .forms import ColaboradorForm
 from .models import Colaborador
-from django.views.generic.list import ListView
 
 
-class ColaboradorListViewl(ListView):
+class ColaboradorListView(ListBaseView):
     model = Colaborador
     template_name = 'colaborador/list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(posto__pk=self.request.session['posto'])
-        return queryset
 
-
-class ColaboradorCreate(CreateView):
+class ColaboradorCreateView(CreateBaseView):
     model = Colaborador
     template_name = 'colaborador/form.html'
     form_class = ColaboradorForm
 
     def get_success_url(self):
-        return reverse('colaborador:colaborador_list')
+        return reverse('colaborador:list')
+
+
+class ColaboradorUpdateView(UpdateView):
+    model = Colaborador
+    fields = ['nome', 'cpf', 'contato', 'endereco', 'funcao']
+    template_name = 'colaborador/update.html'
+
+    def get_success_url(self):
+        return reverse('colaborador:list')
+
+
+class ColaboradorDeleteView(DeleteView):
+    model = Colaborador
+    template_name = 'colaborador/delete.html'
+    success_url = reverse_lazy("colaborador:list")
 
 # def colaborador_json(request):
 #     username = request.GET.get('username', None)

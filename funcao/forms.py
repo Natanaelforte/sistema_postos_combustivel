@@ -5,4 +5,4 @@ from .models import Funcao
 class FuncaoForm(ModelForm):
     class Meta:
         model = Funcao
-        fields = ['posto', 'codigo', 'descricao']
+        fields = ['codigo', 'descricao']

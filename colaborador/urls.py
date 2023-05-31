@@ -6,6 +6,8 @@ from colaborador import views
 app_name = 'colaborador'
 
 urlpatterns = [
-    path('', views.ColaboradorListViewl.as_view(), name='colaborador_list'),
-    path('create/', views.ColaboradorCreate.as_view(), name='create'),
+    path('', views.ColaboradorListView.as_view(), name='list'),
+    path('create/', views.ColaboradorCreateView.as_view(), name='create'),
+    path('update/<int:pk>/', views.ColaboradorUpdateView.as_view(), name='update'),
+    path('delete/<int:pk>/', views.ColaboradorDeleteView.as_view(), name='delete')
 ]

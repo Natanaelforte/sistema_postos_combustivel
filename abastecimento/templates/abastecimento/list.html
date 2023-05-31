@@ -11,11 +11,13 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Abastecimento in object_list %}
-        <li>{{ Abastecimento.posto}} - {{ Abastecimento.combustivel.get_tipo_de_combustivel_display}}
-            - Bomba {{ Abastecimento.bomba.numero}} - {{ Abastecimento.colaborador.nome}} /
-            {{ Abastecimento.colaborador.funcao}} - {{ Abastecimento.litros_abastecido}} litros -
-            {{ Abastecimento.valor_total_display}} - {{ Abastecimento.data}}
+    {% for abastecimento in object_list %}
+        <li>{{ abastecimento.combustivel.get_tipo_de_combustivel_display}}
+            - Bomba {{ abastecimento.bomba.numero}} - {{ abastecimento.colaborador.nome}} /
+            {{ abastecimento.colaborador.funcao}} - {{ abastecimento.litros_abastecido}} litros -
+            {{ abastecimento.valor_total_display}} - {{ abastecimento.data}}
+            <a href="{% url 'abastecimento:update' abastecimento.pk %}">Editar</a>
+            <a href="{% url 'abastecimento:delete' abastecimento.pk %}">Excluir</a>
         </li>
     {% empty %}
         <li>Não há abastecimentos relacionádos ao posto escolhido.</li>

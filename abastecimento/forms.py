@@ -5,4 +5,4 @@ from .models import Abastecimento
 class AbastecimentoForm(ModelForm):
     class Meta:
         model = Abastecimento
-        fields = ['posto', 'colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']
+        fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']

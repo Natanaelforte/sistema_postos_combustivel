@@ -11,8 +11,11 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Combustivel in object_list %}
-        <li>{{ Combustivel.get_tipo_de_combustivel_display}} - {{ Combustivel.posto }}</li>
+    {% for combustivel in object_list %}
+        <li>{{ combustivel.get_tipo_de_combustivel_display}}
+            <a href="{% url 'combustivel:update' combustivel.pk %}">Editar</a>
+            <a href="{% url 'combustivel:delete' combustivel.pk %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Não há combustíveis relacionádo ao posto escolhido.</li>
     {% endfor %}

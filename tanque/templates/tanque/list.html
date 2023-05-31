@@ -11,8 +11,11 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Tanque in object_list %}
-        <li>{{ Tanque.combustivel}} - {{ Tanque.quantidade_litros }} Litros.</li>
+    {% for tanque in object_list %}
+        <li>{{ tanque.combustivel}}
+            <a href="{% url 'tanque:update' tanque.pk %}">Editar</a>
+            <a href="{% url 'tanque:delete' tanque.pk %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Não há tamques relacionádos ao posto escolhido.</li>
     {% endfor %}

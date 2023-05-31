@@ -1,24 +1,35 @@
-from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
 from abastecimento.forms import AbastecimentoForm
 from abastecimento.models import Abastecimento
+from base.views import CreateBaseView, ListBaseView
 
 
-class AbastecimentoListViewl(ListView):
+class AbastecimentoListView(ListBaseView):
     model = Abastecimento
     template_name = 'abastecimento/list.html'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(posto__pk=self.request.session['posto'])
-        return queryset
 
-
-class AbastecimentoCreate(CreateView):
+class AbastecimentoCreateView(CreateBaseView):
     model = Abastecimento
     template_name = 'abastecimento/forms.html'
     form_class = AbastecimentoForm
 
     def get_success_url(self):
-        return reverse('abastecimento:abastecimento_list')
+        return reverse('abastecimento:list')
+
+
+class AbastecimentoUpdateView(UpdateView):
+    model = Abastecimento
+    fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']
+    template_name = 'abastecimento/update.html'
+
+    def get_success_url(self):
+        return reverse('abastecimento:list')
+
+
+class AbastecimentoDeleteView(DeleteView):
+    model = Abastecimento
+    template_name = 'abastecimento/delete.html'
+    success_url = reverse_lazy("abastecimento:list")

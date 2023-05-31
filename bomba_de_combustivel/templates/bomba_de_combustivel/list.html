@@ -11,8 +11,12 @@
     <a href="{% url 'inicio:dashboard' %}">Inicio</a>
 
     <ul>
-    {% for Bomba in object_list %}
-        <li>Bomba {{ Bomba.numero }} - {{ Bomba.posto }}</li>
+
+    {% for bomba in object_list %}
+        <li>Bomba {{ bomba.numero }}
+            <a href="{% url 'bomba_de_combustivel:update' bomba.pk %}">Editar</a>
+            <a href="{% url 'bomba_de_combustivel:delete' bomba.pk %}">Excluir</a>
+        </li>
     {% empty %}
         <li>Não há bombas relacionáda ao posto escolhido.</li>
     {% endfor %}
