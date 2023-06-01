@@ -22,8 +22,8 @@ class FuncaoCreateView(CreateBaseView):
 
 class FuncaoUpdateView(UpdateBaseView):
     model = Funcao
-    fields = ['codigo', 'descricao']
     template_name = 'funcao/update.html'
+    form_class = FuncaoForm
 
     def get_success_url(self):
         return reverse('funcao:list')

@@ -22,8 +22,8 @@ class CombustivelCreateView(CreateBaseView):
 
 class CombustivelUpdateView(UpdateBaseView):
     model = Combustivel
-    fields = ['tipo_de_combustivel']
     template_name = 'combustivel/update.html'
+    form_class = CombustivelForm
 
     def get_success_url(self):
         return reverse('combustivel:list')

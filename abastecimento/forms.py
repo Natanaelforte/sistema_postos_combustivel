@@ -8,7 +8,7 @@ from .models import Abastecimento
 class AbastecimentoForm(BasePadraoForm):
     class Meta:
         model = Abastecimento
-        fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']
+        fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido']
 
     def __init__(self, *args, **kwargs):
         posto_pk = kwargs.pop('posto_pk', None)

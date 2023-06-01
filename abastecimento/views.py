@@ -23,7 +23,7 @@ class AbastecimentoCreateView(CreateBaseView):
 
 class AbastecimentoUpdateView(UpdateBaseView):
     model = Abastecimento
-    fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']
+    form_class = AbastecimentoForm
     template_name = 'abastecimento/update.html'
 
     def get_success_url(self):

@@ -14,7 +14,7 @@ class Abastecimento(models.Model):
     bomba = models.ForeignKey(Bomba, on_delete=models.CASCADE)
     combustivel = models.ForeignKey(Combustivel, on_delete=models.CASCADE)
     litros_abastecido = models.DecimalField(decimal_places=2, max_digits=10, null=True, blank=True)
-    data = models.DateTimeField('Data do abastecimento')
+    data = models.DateTimeField('Data do abastecimento', auto_now_add=True)
 
     class Meta:
         db_table = 'Abastecimento'

@@ -22,8 +22,8 @@ class TanqueCreateView(CreateBaseView):
 
 class TanqueUpdateView(UpdateBaseView):
     model = Tanque
-    fields = ['combustivel', 'quantidade_litros']
     template_name = 'tanque/update.html'
+    form_class = TanqueForm
 
     def get_success_url(self):
         return reverse('tanque:list')

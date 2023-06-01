@@ -22,7 +22,7 @@ class BombaCreateView(CreateBaseView):
 
 class BombaUpdateView(UpdateBaseView):
     model = Bomba
-    fields = ['numero', 'tanques']
+    form_class = BombaForm
     template_name = 'bomba_de_combustivel/update.html'
 
     def get_success_url(self):
