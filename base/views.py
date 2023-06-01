@@ -1,20 +1,35 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 
 from posto.models import Posto
 
 
 class CreateBaseView(CreateView):
     def _get_posto(self):
-        return get_object_or_404(Posto, pk=self.request.session['posto'])
+        return get_object_or_404(Posto, pk=self.request.session['posto_pk'])
 
     def form_valid(self, form):
         form.instance.posto = self._get_posto()
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'posto_pk': self.request.session['posto_pk']})
+
+        return kwargs
+
 
 class ListBaseView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(posto__pk=self.request.session['posto'])
+        queryset = queryset.filter(posto__pk=self.request.session['posto_pk'])
         return queryset
+
+
+class UpdateBaseView(UpdateView):
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'posto_pk': self.request.session['posto_pk']})
+
+        return kwargs

@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import DeleteView
 
-from base.views import CreateBaseView, ListBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 from combustivel.forms import CombustivelForm
 from combustivel.models import Combustivel
 
@@ -20,7 +20,7 @@ class CombustivelCreateView(CreateBaseView):
         return reverse('combustivel:list')
 
 
-class CombustivelUpdateView(UpdateView):
+class CombustivelUpdateView(UpdateBaseView):
     model = Combustivel
     fields = ['tipo_de_combustivel']
     template_name = 'combustivel/update.html'

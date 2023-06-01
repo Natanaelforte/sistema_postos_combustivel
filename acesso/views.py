@@ -12,6 +12,6 @@ class AcessoLoginView(LoginView):
         return reverse('inicio:dashboard')
 
     def form_valid(self, form):
-        self.request.session['posto'] = self.request.POST.get('posto', None)
+        self.request.session['posto_pk'] = self.request.POST.get('posto', None)
 
         return super(AcessoLoginView, self).form_valid(form)

@@ -1,10 +1,9 @@
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import DeleteView
 
-from base.views import CreateBaseView, ListBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 from funcao.forms import FuncaoForm
 from funcao.models import Funcao
-
 
 
 class FuncaoListView(ListBaseView):
@@ -21,7 +20,7 @@ class FuncaoCreateView(CreateBaseView):
         return reverse('funcao:list')
 
 
-class FuncaoUpdateView(UpdateView):
+class FuncaoUpdateView(UpdateBaseView):
     model = Funcao
     fields = ['codigo', 'descricao']
     template_name = 'funcao/update.html'

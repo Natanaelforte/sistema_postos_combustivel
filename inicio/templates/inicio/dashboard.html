@@ -6,11 +6,37 @@
     </head>
 
     <body>
-        <a href={% url 'colaborador:list' %} >Colaboradores</a>
-        <a href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
-        <a href={% url 'combustivel:list' %} >Combustivel</a>
-        <a href={% url 'funcao:list' %} >Função</a>
-        <a href={% url 'tanque:list' %} >Tanque</a>
-        <a href={% url 'abastecimento:list' %} >Abastecimento</a>
+        <h2>{{ posto.razao_social }}</h2>
+        <h3>{{ posto.cnpj }}</h3>
+
+        <ul>
+            <li>
+                <a href={% url 'colaborador:list' %} >Colaboradores</a>
+            </li>
+
+            <li>
+                <a href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
+            </li>
+
+            <li>
+                <a href={% url 'combustivel:list' %} >Combustivel</a>
+            </li>
+
+            <li>
+                <a href={% url 'funcao:list' %} >Função</a>
+            </li>
+
+            <li>
+                <a href={% url 'tanque:list' %} >Tanque</a>
+            </li>
+
+            <li>
+                <a href={% url 'abastecimento:list' %} >Abastecimento</a>
+            </li>
+
+            <li>
+                <a href={% url 'logout' %} >Sair</a>
+            </li>
+        </ul>
     </body>
 </html>

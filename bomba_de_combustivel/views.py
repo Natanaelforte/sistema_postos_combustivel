@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import  DeleteView
 
-from base.views import CreateBaseView, ListBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 from .forms import BombaForm
 from .models import Bomba
 
@@ -16,17 +16,11 @@ class BombaCreateView(CreateBaseView):
     template_name = 'bomba_de_combustivel/forms.html'
     form_class = BombaForm
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({'posto_pk': self.request.session['posto']})
-
-        return kwargs
-
     def get_success_url(self):
         return reverse('bomba_de_combustivel:list')
 
 
-class BombaUpdateView(UpdateView):
+class BombaUpdateView(UpdateBaseView):
     model = Bomba
     fields = ['numero', 'tanques']
     template_name = 'bomba_de_combustivel/update.html'

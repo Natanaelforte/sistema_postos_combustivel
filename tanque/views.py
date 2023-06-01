@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import DeleteView
 
-from base.views import CreateBaseView, ListBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 from tanque.forms import TanqueForm
 from tanque.models import Tanque
 
@@ -16,17 +16,11 @@ class TanqueCreateView(CreateBaseView):
     template_name = 'tanque/forms.html'
     form_class = TanqueForm
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({'posto_pk': self.request.session['posto']})
-
-        return kwargs
-
     def get_success_url(self):
         return reverse('tanque:list')
 
 
-class TanqueUpdateView(UpdateView):
+class TanqueUpdateView(UpdateBaseView):
     model = Tanque
     fields = ['combustivel', 'quantidade_litros']
     template_name = 'tanque/update.html'

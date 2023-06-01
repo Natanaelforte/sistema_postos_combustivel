@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import UpdateView, DeleteView
 
-from base.views import CreateBaseView, ListBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 from .forms import ColaboradorForm
 from .models import Colaborador
 
@@ -20,9 +20,9 @@ class ColaboradorCreateView(CreateBaseView):
         return reverse('colaborador:list')
 
 
-class ColaboradorUpdateView(UpdateView):
+class ColaboradorUpdateView(UpdateBaseView):
     model = Colaborador
-    fields = ['nome', 'cpf', 'contato', 'endereco', 'funcao']
+    form_class = ColaboradorForm
     template_name = 'colaborador/update.html'
 
     def get_success_url(self):
