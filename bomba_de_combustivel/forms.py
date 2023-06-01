@@ -1,10 +1,9 @@
-from django.forms import ModelForm
-
+from base.forms import BasePadraoForm
 from tanque.models import Tanque
 from .models import Bomba
 
 
-class BombaForm(ModelForm):
+class BombaForm(BasePadraoForm):
     class Meta:
         model = Bomba
         fields = ['numero', 'tanques']

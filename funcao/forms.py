@@ -1,8 +1,8 @@
-from django.forms import ModelForm
+from base.forms import BasePadraoForm
 from .models import Funcao
 
 
-class FuncaoForm(ModelForm):
+class FuncaoForm(BasePadraoForm):
     class Meta:
         model = Funcao
         fields = ['codigo', 'descricao']

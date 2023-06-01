@@ -1,12 +1,11 @@
-from django.forms import ModelForm
-
+from base.forms import BasePadraoForm
 from bomba_de_combustivel.models import Bomba
 from colaborador.models import Colaborador
 from combustivel.models import Combustivel
 from .models import Abastecimento
 
 
-class AbastecimentoForm(ModelForm):
+class AbastecimentoForm(BasePadraoForm):
     class Meta:
         model = Abastecimento
         fields = ['colaborador', 'bomba', 'combustivel', 'litros_abastecido', 'data']

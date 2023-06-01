@@ -1,10 +1,9 @@
-from django.forms import ModelForm
-
+from base.forms import BasePadraoForm
 from colaborador.models import Colaborador
 from funcao.models import Funcao
 
 
-class ColaboradorForm(ModelForm):
+class ColaboradorForm(BasePadraoForm):
     class Meta:
         model = Colaborador
         fields = ['nome', 'cpf', 'contato', 'endereco', 'funcao']
