@@ -1,0 +1,61 @@
+body {
+    background: url("images/postoblured.png") no-repeat  center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;
+}
+
+
+
+.cabecalho {
+    width: 100%;
+    margin-top: 0px;
+}
+
+.corpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.corpo-coluna {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+
+
+}
+
+.botao-acesso {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: #d0d0d0;
+    border-width: 0.5px;
+    border-radius: 7px;
+    width: 250px;
+    height: 100px;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 5px 5px 11px #666666;
+}
+
+a:-webkit-any-link {
+    color: black;
+    cursor: pointer;
+    text-decoration: None;
+}

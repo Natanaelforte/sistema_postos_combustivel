@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <title>Dashboard</title>
+        <link rel="stylesheet" href="{% static 'inicio/style.css' %}">
     </head>
 
     <body>
@@ -11,42 +13,27 @@
             <div class="cabecalho">
                 <h2 class="razao">{{ posto.razao_social }}</h2>
                 <h3 class="cnpj">{{ posto.cnpj }}</h3>
+                <a  href={% url 'logout' %} >Sair</a>
             </div>
 
             <div class="corpo">
+                <div class="corpo-coluna">
+                    <a class="botao-acesso" href={% url 'colaborador:list' %} >Colaboradores</a>
+                    <a class="botao-acesso" href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
+                    <a class="botao-acesso" href={% url 'combustivel:list' %} >Combustivel</a>
+                </div>
 
-                    <div class="botao-acesso">
-                       <a href={% url 'colaborador:list' %} >Colaboradores</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'combustivel:list' %} >Combustivel</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'funcao:list' %} >Função</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'tanque:list' %} >Tanque</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'abastecimento:list' %} >Abastecimento</a>
-                    </div>
-
-                    <div class="botao-acesso">
-                        <a href={% url 'logout' %} >Sair</a>
-                    </div>
+                <div class="corpo-coluna">
+                    <a class="botao-acesso" href={% url 'funcao:list' %} >Função</a>
+                    <a class="botao-acesso" href={% url 'tanque:list' %} >Tanque</a>
+                    <a class="botao-acesso" href={% url 'abastecimento:list' %} >Abastecimento</a>
+                </div>
 
             </div>
 
             <div class="rodape">
-
+                <h2>Softwere house</h2>
+                <h2>Data</h2>
             </div>
 
         </div>
