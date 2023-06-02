@@ -6,37 +6,49 @@
     </head>
 
     <body>
-        <h2>{{ posto.razao_social }}</h2>
-        <h3>{{ posto.cnpj }}</h3>
+        <div class="plano-fundo">
 
-        <ul>
-            <li>
-                <a href={% url 'colaborador:list' %} >Colaboradores</a>
-            </li>
+            <div class="cabecalho">
+                <h2 class="razao">{{ posto.razao_social }}</h2>
+                <h3 class="cnpj">{{ posto.cnpj }}</h3>
+            </div>
 
-            <li>
-                <a href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
-            </li>
+            <div class="corpo">
 
-            <li>
-                <a href={% url 'combustivel:list' %} >Combustivel</a>
-            </li>
+                    <div class="botao-acesso">
+                       <a href={% url 'colaborador:list' %} >Colaboradores</a>
+                    </div>
 
-            <li>
-                <a href={% url 'funcao:list' %} >Função</a>
-            </li>
+                    <div class="botao-acesso">
+                        <a href={% url 'bomba_de_combustivel:list' %} >Bombas de Combustivel</a>
+                    </div>
 
-            <li>
-                <a href={% url 'tanque:list' %} >Tanque</a>
-            </li>
+                    <div class="botao-acesso">
+                        <a href={% url 'combustivel:list' %} >Combustivel</a>
+                    </div>
 
-            <li>
-                <a href={% url 'abastecimento:list' %} >Abastecimento</a>
-            </li>
+                    <div class="botao-acesso">
+                        <a href={% url 'funcao:list' %} >Função</a>
+                    </div>
 
-            <li>
-                <a href={% url 'logout' %} >Sair</a>
-            </li>
-        </ul>
+                    <div class="botao-acesso">
+                        <a href={% url 'tanque:list' %} >Tanque</a>
+                    </div>
+
+                    <div class="botao-acesso">
+                        <a href={% url 'abastecimento:list' %} >Abastecimento</a>
+                    </div>
+
+                    <div class="botao-acesso">
+                        <a href={% url 'logout' %} >Sair</a>
+                    </div>
+
+            </div>
+
+            <div class="rodape">
+
+            </div>
+
+        </div>
     </body>
 </html>
