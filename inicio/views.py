@@ -12,6 +12,6 @@ class DashboardView(generic.TemplateView, PostoMixin, LoginRequiredMixin):
 
         posto = self._get_instance_posto()
 
-        context_data.update({'posto': posto})
+        context_data.update({'posto': posto, 'usuario': self.request.user})
 
         return context_data

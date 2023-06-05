@@ -11,9 +11,26 @@
         <div class="plano-fundo">
 
             <div class="cabecalho">
-                <h1 class="razao">{{ posto.razao_social }}</h1>
-                <h5 class="cnpj">{{ posto.cnpj }}</h5>
-                <a  href={% url 'logout' %} >Sair</a>
+                <div>
+                    <h1 class="razao">{{ posto.razao_social }}</h1>
+                    <h5 class="cnpj">{{ posto.cnpj }}</h5>
+                </div>
+
+                <div class="cabecalho-menu">
+                    <h2 class="cabecalho-menu-nome">{{ usuario.first_name }}</h2>
+
+                    <div class="cabecalho-menu-botao">
+                        <p><b>{{ usuario.first_name|slice:":1"|upper}}</b></p>
+
+                        <ul class="cabecalho-menu-ul">
+                            <li class="cabecalho-menu-drop">
+                                <ul class="cabecalho-menu-ul">
+                                    <li class="cabecalho-menu-lista"><a  href={% url 'logout' %} >Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="corpo">
@@ -32,10 +49,24 @@
             </div>
 
             <div class="rodape">
-                <h2 class="rodape_house">Softwere house</h2>
-                <h2 class="rodape_data">{{ posto.DataAtual}}</h2>
+                <h2 class="rodape-house">Softwere house</h2>
+                <h2 class="rodape-data">{{ posto.DataAtual}}</h2>
             </div>
 
         </div>
+
+{#        <script>#}
+{#            var openMenu = false#}
+{##}
+{#            $('.botao-menu').on('click', function() {#}
+{#                openMenu = !openMenu#}
+{##}
+{#                if (openMenu) {#}
+{#                    $('.cabecalho_menu_ul').css('display', 'block')#}
+{#                } else {#}
+{#                    $('.cabecalho_menu_ul').css('display', 'none')#}
+{#                }#}
+{#            })#}
+{#        </script>#}
     </body>
 </html>
