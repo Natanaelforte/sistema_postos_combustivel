@@ -1,4 +1,6 @@
 from django.db import models
+
+
 from combustivel.models import Combustivel
 from posto.models import Posto
 
@@ -28,3 +30,4 @@ class VigenciaDePreco(models.Model):
             return 'Ativo'
 
         return 'Inativo'
+

@@ -15,3 +15,5 @@ class AcessoLoginView(LoginView):
         self.request.session['posto_pk'] = self.request.POST.get('posto', None)
 
         return super(AcessoLoginView, self).form_valid(form)
+
+

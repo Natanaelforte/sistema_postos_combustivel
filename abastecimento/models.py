@@ -1,5 +1,3 @@
-from unicodedata import decimal
-
 from django.db import models
 
 from bomba_de_combustivel.models import Bomba

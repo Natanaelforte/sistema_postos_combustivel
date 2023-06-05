@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 class Posto(models.Model):
@@ -14,3 +15,9 @@ class Posto(models.Model):
 
     def __str__(self):
         return f'{self.razao_social} / {self.cnpj}'
+
+    @property
+    def DataAtual(self):
+        datatime = datetime.now()
+        data = datatime.date().strftime('%d/%m/%Y')
+        return data

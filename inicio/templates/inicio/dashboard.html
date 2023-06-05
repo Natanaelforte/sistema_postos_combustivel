@@ -11,8 +11,8 @@
         <div class="plano-fundo">
 
             <div class="cabecalho">
-                <h2 class="razao">{{ posto.razao_social }}</h2>
-                <h3 class="cnpj">{{ posto.cnpj }}</h3>
+                <h1 class="razao">{{ posto.razao_social }}</h1>
+                <h5 class="cnpj">{{ posto.cnpj }}</h5>
                 <a  href={% url 'logout' %} >Sair</a>
             </div>
 
@@ -32,8 +32,8 @@
             </div>
 
             <div class="rodape">
-                <h2>Softwere house</h2>
-                <h2>Data</h2>
+                <h2 class="rodape_house">Softwere house</h2>
+                <h2 class="rodape_data">{{ posto.DataAtual}}</h2>
             </div>
 
         </div>
