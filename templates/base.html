@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+        {% block style %}
+            <link rel="stylesheet" href="{% static 'inicio/style.css' %}">
+        {% endblock %}
+    </head>
+
+    <body>
+        <div class="plano-fundo">
+
+            <div class="cabecalho">
+                <div>
+                    <h2 class="razao">{{ posto.razao_social }}</h2>
+                    <h5 class="cnpj">{{ posto.CnpjMascara }}</h5>
+                </div>
+
+                <div class="cabecalho-menu">
+                    <h2 class="cabecalho-menu-nome">{{ usuario.first_name|title }}</h2>
+
+                    <div class="cabecalho-menu-botao">
+                        <p><b>{{ usuario.first_name|slice:":1"|upper}}</b></p>
+
+                        <ul class="cabecalho-menu-ul">
+                            <li class="cabecalho-menu-drop">
+                                <ul class="cabecalho-menu-ul">
+                                    <li class="cabecalho-menu-lista"><a  href={% url 'logout' %} >Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="corpo-base">
+                {% block corpo %}
+
+                {% endblock %}
+            </div>
+
+            <div class="rodape">
+                <h2 class="rodape-house">NF Softwere</h2>
+                <h2 class="rodape-data">{{ posto.DataAtual}}</h2>
+            </div>
+
+        </div>
+    </body>
+</html>

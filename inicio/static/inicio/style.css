@@ -31,6 +31,10 @@ body {
 
 }
 
+.corpo-base {
+    height: 818px;
+}
+
 .corpo-coluna {
     display: flex;
     flex-direction: row;

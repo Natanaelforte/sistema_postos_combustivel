@@ -1,25 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bombas de combustivel</title>
-</head>
-<body>
-    <h1>Bombas de combustivel</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    <a href="{% url 'bomba_de_combustivel:create' %}">Novo</a>
-    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'bomba_de_combustivel/style.css' %}">
+{% endblock %}
 
-    <ul>
+{% block corpo %}
 
-    {% for bomba in object_list %}
-        <li>Bomba {{ bomba.numero }}
-            <a href="{% url 'bomba_de_combustivel:update' bomba.pk %}">Editar</a>
-            <a href="{% url 'bomba_de_combustivel:delete' bomba.pk %}">Excluir</a>
-        </li>
-    {% empty %}
-        <li>Não há bombas relacionáda ao posto escolhido.</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+    <div>
+        <h1>Bombas de combustivel</h1>
+    </div>
+
+    <div>
+        <a href="{% url 'bomba_de_combustivel:create' %}">Novo</a>
+        <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+        <h2>Procurar</h2>
+    </div>
+
+    <div class="tabela-div">
+        <div class="card-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Número</th>
+
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for bomba in object_list %}
+                        <tr>
+                            <td>{{ bomba.numero }}</td>
+
+                            <td>
+                                <a href="{% url 'bomba_de_combustivel:update' bomba.pk %}">Editar</a>
+                                <a href="{% url 'bomba_de_combustivel:delete' bomba.pk %}">Excluir</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                            <h3>Não há bombas relacionáda ao posto escolhido.</h3>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
