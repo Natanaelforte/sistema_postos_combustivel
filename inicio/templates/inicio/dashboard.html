@@ -13,11 +13,11 @@
             <div class="cabecalho">
                 <div>
                     <h2 class="razao">{{ posto.razao_social }}</h2>
-                    <h5 class="cnpj">{{ posto.cnpj }}</h5>
+                    <h5 class="cnpj">{{ posto.CnpjMascara }}</h5>
                 </div>
 
                 <div class="cabecalho-menu">
-                    <h2 class="cabecalho-menu-nome">{{ usuario.first_name }}</h2>
+                    <h2 class="cabecalho-menu-nome">{{ usuario.first_name|title }}</h2>
 
                     <div class="cabecalho-menu-botao">
                         <p><b>{{ usuario.first_name|slice:":1"|upper}}</b></p>

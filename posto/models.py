@@ -21,3 +21,9 @@ class Posto(models.Model):
         datatime = datetime.now()
         data = datatime.date().strftime('%d/%m/%Y')
         return data
+
+    @property
+    def CnpjMascara(self):
+        cnpj = self.cnpj
+
+        return f'{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}'

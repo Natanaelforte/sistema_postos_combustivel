@@ -110,7 +110,8 @@ a:-webkit-any-link {
 
 .cnpj {
     margin-top: 5px;
-    margin-left: 20px;
+    margin-left: 10px;
+    font-size: 15px;
 }
 
 .cabecalho-menu {
