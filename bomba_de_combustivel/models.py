@@ -16,3 +16,9 @@ class Bomba(models.Model):
 
     def __str__(self):
         return f'Bomba {self.numero} / {self.posto}.'
+
+    @property
+    def NumeroBombaMascara(self):
+        numero = str(self.numero)
+
+        return numero.zfill(2)
