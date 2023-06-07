@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr class="tabela-cabecalho">
+            <th class="cabecalho-numero">Número</th>
+
+            <th class="cabecalho-acoes">Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for bomba in object_list %}
+            <tr class="tabela-corpo-linha">
+                <td class="tabela-corpo-bomba">{{ bomba.NumeroBombaMascara }}</td>
+
+                <td class="tabela-corpo-acaoes">
+                    <a href="{% url 'bomba_de_combustivel:update' bomba.pk %}" class="botao-acao-editar">Editar</a>
+                    <a href="{% url 'bomba_de_combustivel:delete' bomba.pk %}" class="botao-acao-excluir">Excluir</a>
+                </td>
+            </tr>
+        {% empty %}
+                <h3>Não há bombas relacionáda ao posto escolhido.</h3>
+        {% endfor %}
+    </tbody>
+</table>

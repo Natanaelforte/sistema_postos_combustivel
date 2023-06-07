@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import  DeleteView
 
-from base.views import CreateBaseView, ListBaseView, UpdateBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView, TableBaseView
 from .forms import BombaForm
 from .models import Bomba
 
@@ -9,6 +9,12 @@ from .models import Bomba
 class BombaListView(ListBaseView):
     model = Bomba
     template_name = 'bomba_de_combustivel/list.html'
+
+
+class BombaTableView(TableBaseView):
+    model = Bomba
+    filter_fields = ['numero']
+    template_name = 'bomba_de_combustivel/table.html'
 
 
 class BombaCreateView(CreateBaseView):

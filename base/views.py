@@ -23,6 +23,7 @@ class CreateBaseView(PostoUsuarioContextMixin, CreateView):
 class ListBaseView(PostoUsuarioContextMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
+
         queryset = queryset.filter(posto__pk=self.request.session['posto_pk'])
         return queryset
 
@@ -34,3 +35,28 @@ class UpdateBaseView(PostoUsuarioContextMixin, UpdateView):
         kwargs.update({'posto_pk': self.request.session['posto_pk']})
 
         return kwargs
+
+
+class TableBaseView(ListBaseView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter()
+        return queryset
+
+        # VIEW TABLE BOMBA
+        # filter_fields = ['numero']
+
+        # ------------------------------------------
+        # VIEW BASE TABLE
+        # search = self.request.GET.get('search')
+        # queryset = super().get_queryset()
+        #
+        # if self.filter_fields:
+        #     kwwargs_filter = {}
+        #
+        #     for filter_field in self.filter_fields:
+        #         kwwargs_filter[filter_field] = search
+        #
+        #     queryset = queryset.filter(**kwwargs_filter)
+        #
+        # return queryset

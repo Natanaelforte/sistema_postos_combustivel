@@ -7,46 +7,27 @@
 {% endblock %}
 
 {% block corpo %}
-
-    <div>
+    <div class="titulo-app-bomba">
         <h1>Bombas de combustivel</h1>
     </div>
 
-    <div>
-        <a href="{% url 'bomba_de_combustivel:create' %}">Novo</a>
-        <a href="{% url 'inicio:dashboard' %}">Inicio</a>
-        <h2>Procurar</h2>
-    </div>
-
     <div class="tabela-div">
+        <div class="cabecalho-app-bomba">
+            <div>
+                <input type="search" class="cabecalho-app-imput" placeholder="Bomba... ">
+                <input type="submit" class="cabecalho-app-botao">
+            </div>
+
+            <div class="cabecalho-app-bomba-acao">
+                <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-bomba-inicio"> Inicio</a>
+                <a href="{% url 'bomba_de_combustivel:create' %}" class="cabecalho-app-bomba-novo">+ Novo</a>
+            </div>
+        </div>
+
         <div class="card-tabela">
             <div class="tabela">
-                <table>
-                    <thead>
-                        <tr class="tabela-cabecalho">
-                            <th class="cabecalho-numero">Número</th>
-
-                            <th class="cabecalho-acoes">Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for bomba in object_list %}
-                            <tr class="tabela-corpo-linha">
-                                <td class="tabela-corpo-bomba">{{ bomba.NumeroBombaMascara }}</td>
-
-                                <td class="tabela-corpo-acaoes">
-                                    <a href="{% url 'bomba_de_combustivel:update' bomba.pk %}" class="botao-acao-editar">Editar</a>
-                                    <a href="{% url 'bomba_de_combustivel:delete' bomba.pk %}" class="botao-acao-excluir">Excluir</a>
-                                </td>
-                            </tr>
-                        {% empty %}
-                                <h3>Não há bombas relacionáda ao posto escolhido.</h3>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                {% include 'bomba_de_combustivel/table.html' %}
             </div>
         </div>
     </div>
-
 {% endblock %}
