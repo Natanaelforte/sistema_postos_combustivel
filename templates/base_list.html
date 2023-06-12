@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/list.css' %}">
+{% endblock %}
+
+{% block corpo %}
+    <div class="titulo-app-bomba">
+        {% block listagem_titulo %}
+            <h1></h1>
+        {% endblock %}
+    </div>
+
+    <div class="tabela-div">
+        <div class="cabecalho-app-bomba">
+            <div>
+                <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: 1... ">
+                <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
+            </div>
+
+            <div class="cabecalho-app-bomba-acao">
+                <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-bomba-inicio"> Inicio</a>
+
+                {% block listagem_novo %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block card %}
+            <div class="card-tabela">
+                <div class="div-tabela">
+                    {% block card_conteudo %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+
+{#    <script type="application/javascript" src="{% static 'bomba_de_combustivel/script.js' %}"></script>#}
+
+    <script>
+        {% block url_table %}
+            var urlTableBusca = "{% url 'bomba_de_combustivel:table' %}"
+        {% endblock %}
+    </script>
+{% endblock %}

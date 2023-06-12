@@ -1,0 +1,177 @@
+*{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+a:-webkit-any-link {
+    color: white;
+    cursor: pointer;
+    text-decoration: None;
+}
+
+.titulo-app-bomba {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.cabecalho-app-bomba {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+    height: 50px;
+}
+
+.cabecalho-app-bomba-acao {
+    margin-right: 10px;
+}
+
+.cabecalho-app-bomba-inicio {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #0fa94e;
+}
+
+.cabecalho-app-bomba-inicio:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #04f87c;
+    transition: all 0.5s;
+}
+
+.cabecalho-app-bomba-novo {
+   border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #0d2b9a;
+}
+
+.cabecalho-app-bomba-novo:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #0c3ffc;
+    transition: all 0.5s;
+}
+
+.tabela-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 735px;
+}
+
+.cabecalho-app-imput {
+    border: 1px solid #8b8a8a;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.cabecalho-app-botao {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #0d2b9a;
+    color: white;
+}
+
+.cabecalho-app-botao:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #0c3ffc;
+    color: white;
+    transition: all 0.5s;
+}
+
+.card-tabela {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    background-color: #dedddd;
+    width: 700px;
+    height: 500px;
+    box-shadow: 5px 5px 11px #666666;
+}
+
+.tabela {
+    margin-top: 10px;
+    height: 480px;
+    overflow-y: auto;
+}
+
+.botao-acao-editar {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: #0fa94e;
+
+}
+
+.botao-acao-editar:hover {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: #04f87c;
+    transition: all 0.5s;
+}
+
+.botao-acao-excluir {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: #b10000;
+}
+
+.botao-acao-excluir:hover {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 2px;
+    background-color: #ff0000;
+    transition: all 0.5s;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.cabecalho-numero {
+    width: 580px;
+    border-bottom: 2px solid black;
+}
+
+.cabecalho-acoes {
+    width: 120px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.tabela-cabecalho {
+    height: 30px;
+}
+
+.tabela-corpo-linha {
+    height: 30px;
+    border-bottom: 0.5px solid #c4c3c3;
+}
+
+.tabela-corpo-bomba {
+    padding: 5px;
+}
+
+.tabela-corpo-acaoes {
+    padding-left: 10px;
+    padding-top: 2px;
+    border-left: 2px solid black;
+}
+

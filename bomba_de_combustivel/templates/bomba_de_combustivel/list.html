@@ -1,33 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base_list.html' %}
 {% load static %}
 
-{% block style %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'bomba_de_combustivel/style.css' %}">
+{% block listagem_titulo %}
+    <h1>Bombas de combustivel</h1>
 {% endblock %}
 
-{% block corpo %}
-    <div class="titulo-app-bomba">
-        <h1>Bombas de combustivel</h1>
-    </div>
+{% block listagem_novo %}
+    <a href="{% url 'bomba_de_combustivel:create' %}" class="cabecalho-app-bomba-novo">+ Novo</a>
+{% endblock %}
 
-    <div class="tabela-div">
-        <div class="cabecalho-app-bomba">
-            <div>
-                <input type="search" class="cabecalho-app-imput" placeholder="Bomba... ">
-                <input type="submit" class="cabecalho-app-botao">
-            </div>
+{% block card_conteudo %}
+    {% include 'bomba_de_combustivel/table.html' %}
+{% endblock %}
 
-            <div class="cabecalho-app-bomba-acao">
-                <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-bomba-inicio"> Inicio</a>
-                <a href="{% url 'bomba_de_combustivel:create' %}" class="cabecalho-app-bomba-novo">+ Novo</a>
-            </div>
-        </div>
+{% block url_table %}
+    var urlTableBusca = "{% url 'bomba_de_combustivel:table' %}"
+{% endblock %}
 
-        <div class="card-tabela">
-            <div class="tabela">
-                {% include 'bomba_de_combustivel/table.html' %}
-            </div>
-        </div>
-    </div>
+{% block scripts %}
+    {{ block.super }}
+    <script type="application/javascript" src="{% static 'bomba_de_combustivel/script.js' %}"></script>
+
+    <script>
+        var urlTableBusca = "{% url 'bomba_de_combustivel:table' %}"
+    </script>
 {% endblock %}

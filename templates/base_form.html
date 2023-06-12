@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/list.css' %}">
+{% endblock %}
+
+{% block corpo %}
+    <div class="titulo-app-bomba">
+        <h1>Nova bomba</h1>
+    </div>
+
+    <div class="card-tabela">
+        {% block card_conteudo %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

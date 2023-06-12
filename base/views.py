@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, ListView, UpdateView
 
@@ -38,25 +39,23 @@ class UpdateBaseView(PostoUsuarioContextMixin, UpdateView):
 
 
 class TableBaseView(ListBaseView):
+    search_fields = None
+
     def get_queryset(self):
+        search = self.request.GET.get('search')
         queryset = super().get_queryset()
-        queryset = queryset.filter()
+
+        if self.search_fields and search:
+            kwwargs_search = {}
+
+            for search_field in self.search_fields:
+                kwwargs_search[f'{search_field}__icontains'] = search
+
+            queryset = queryset.filter(**kwwargs_search)
+
         return queryset
 
-        # VIEW TABLE BOMBA
-        # filter_fields = ['numero']
+    def get(self, request, *args, **kwargs):
+        resutado = super().get(request, *args, **kwargs)
 
-        # ------------------------------------------
-        # VIEW BASE TABLE
-        # search = self.request.GET.get('search')
-        # queryset = super().get_queryset()
-        #
-        # if self.filter_fields:
-        #     kwwargs_filter = {}
-        #
-        #     for filter_field in self.filter_fields:
-        #         kwwargs_filter[filter_field] = search
-        #
-        #     queryset = queryset.filter(**kwwargs_filter)
-        #
-        # return queryset
+        return JsonResponse({'tabela': resutado.rendered_content})
