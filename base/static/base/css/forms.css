@@ -119,4 +119,5 @@ input[type="submit" i]:hover {
     padding: 9px;
     background-color: #b3b1b1;
     transition: all 0.5s;
+    color: black;
 }

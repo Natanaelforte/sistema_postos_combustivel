@@ -35,29 +35,30 @@ a:-webkit-any-link {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-    background-color: #0fa94e;
+    background-color: #525050;
 }
 
 .cabecalho-app-bomba-inicio:hover {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-    background-color: #04f87c;
+    background-color: #b3b1b1;
     transition: all 0.5s;
+    color: black!important;
 }
 
 .cabecalho-app-bomba-novo {
    border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-    background-color: #0d2b9a;
+    background-color: #0fa94e;
 }
 
 .cabecalho-app-bomba-novo:hover {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-    background-color: #0c3ffc;
+    background-color: #04f87c;
     transition: all 0.5s;
 }
 
@@ -66,7 +67,9 @@ a:-webkit-any-link {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 735px;
+    max-height: calc(100vh - 225px);
+    overflow-y: auto;
+    height: 100%;
 }
 
 .cabecalho-app-imput {
@@ -93,6 +96,7 @@ a:-webkit-any-link {
 }
 
 .card-tabela {
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -114,7 +118,7 @@ a:-webkit-any-link {
     border: 1px solid black;
     border-radius: 2px;
     padding: 2px;
-    background-color: #0fa94e;
+    background-color: #95830d;
 
 }
 
@@ -122,8 +126,9 @@ a:-webkit-any-link {
     border: 1px solid black;
     border-radius: 2px;
     padding: 2px;
-    background-color: #04f87c;
+    background-color: #eed114;
     transition: all 0.5s;
+    color: black;
 }
 
 .botao-acao-excluir {

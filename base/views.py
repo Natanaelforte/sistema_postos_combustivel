@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 from base.mixins import PostoUsuarioContextMixin
 from posto.models import Posto
@@ -37,6 +37,9 @@ class UpdateBaseView(PostoUsuarioContextMixin, UpdateView):
 
         return kwargs
 
+
+class DeleteBaseView(PostoUsuarioContextMixin, DeleteView):
+    pass
 
 class TableBaseView(ListBaseView):
     search_fields = None

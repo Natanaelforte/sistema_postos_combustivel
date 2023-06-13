@@ -1,0 +1,26 @@
+.card-conteudo-frase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    margin-left: 25px;
+}
+
+.card-conteudo-botao-voltar {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 9px;
+    background-color: #525050;
+    margin-left: 15px;
+    color: white!important;
+}
+
+.card-conteudo-botao-voltar:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 9px;
+    background-color: #b3b1b1;
+    transition: all 0.5s;
+    color: black!important;
+}

@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import  DeleteView
 
-from base.views import CreateBaseView, ListBaseView, UpdateBaseView, TableBaseView
+from base.views import CreateBaseView, ListBaseView, UpdateBaseView, TableBaseView, DeleteBaseView
 from .forms import BombaForm
 from .models import Bomba
 
@@ -35,7 +35,7 @@ class BombaUpdateView(UpdateBaseView):
         return reverse('bomba_de_combustivel:list')
 
 
-class BombaDeleteView(DeleteView):
+class BombaDeleteView(DeleteBaseView):
     model = Bomba
     template_name = 'bomba_de_combustivel/delete.html'
     success_url = reverse_lazy("bomba_de_combustivel:list")

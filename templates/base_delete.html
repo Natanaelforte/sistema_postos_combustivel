@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+{% endblock %}
+
+{% block corpo %}
+    <div class="titulo-app-bomba">
+        {% block app_titulo %}
+
+        {% endblock %}
+    </div>
+
+    <div class="card-tabela">
+        {% block card_conteudo %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

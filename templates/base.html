@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>Dashboard</title>
         {% block style %}
-            <link rel="stylesheet" href="{% static 'inicio/style.css' %}">
+            <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
         {% endblock %}
     </head>
 
@@ -27,7 +27,7 @@
                         <ul class="cabecalho-menu-ul">
                             <li class="cabecalho-menu-drop">
                                 <ul class="cabecalho-menu-ul">
-                                    <li class="cabecalho-menu-lista"><a  href={% url 'logout' %} >Sair</a></li>
+                                    <li class="cabecalho-menu-lista"><a class="cabecalho-menu-sair"  href={% url 'logout' %} >Sair</a></li>
                                 </ul>
                             </li>
                         </ul>
