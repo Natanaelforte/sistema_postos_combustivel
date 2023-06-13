@@ -16,10 +16,12 @@
 
     <div class="tabela-div">
         <div class="cabecalho-app-bomba">
-            <div>
-                <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: 1... ">
-                <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
-            </div>
+            {% block search %}
+                <div>
+                    <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: 1... ">
+                    <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
+                </div>
+            {% endblock %}
 
             <div class="cabecalho-app-bomba-acao">
                 <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-bomba-inicio"> Inicio</a>
@@ -43,7 +45,7 @@
 {% block scripts %}
     {{ block.super }}
 
-{#    <script type="application/javascript" src="{% static 'bomba_de_combustivel/script.js' %}"></script>#}
+    <script type="application/javascript" src="{% static 'bomba_de_combustivel/script.js' %}"></script>
 
     <script>
         {% block url_table %}

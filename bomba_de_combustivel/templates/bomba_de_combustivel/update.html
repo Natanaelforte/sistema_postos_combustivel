@@ -1,5 +1,31 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Atualizar">
-    <a href="{% url 'bomba_de_combustivel:list' %}">Voltar</a>
-</form>
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+{% endblock %}
+
+
+{% block card_conteudo %}
+    <form method="POST" enctype="multipart/form-data" class="form-card-conteudo">
+        <div class="card-conteudo-imputs">
+            <!-- Security token -->
+            {% csrf_token %}
+
+            <!-- Using the formset -->
+            {% for field in form %}
+                {% if not field.is_hidden %}
+                    {{ field }}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="card-conteudo-botoes">
+            <input type="submit" value="Atualizar">
+            <a class="card-conteudo-botao-voltar" href="{% url 'bomba_de_combustivel:list' %}">Voltar</a>
+        </div>
+
+    </form>
+{% endblock %}

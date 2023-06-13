@@ -24,3 +24,7 @@
     transition: all 0.5s;
     color: black!important;
 }
+
+.cabecalho-menu-sair:hover {
+    color: white!important;
+}

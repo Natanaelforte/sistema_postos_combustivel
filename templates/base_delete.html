@@ -15,8 +15,21 @@
     </div>
 
     <div class="card-tabela">
-        {% block card_conteudo %}
+            <form method="post" class="form-card-conteudo">
+                {% csrf_token %}
 
-        {% endblock %}
+                <div class="card-conteudo-frase">
+                    {% block card_conteudo_frase %}
+
+                    {% endblock %}
+                </div>
+
+                <div class="card-conteudo-botoes">
+                    {% block card_conteudo_botoes %}
+
+                    {% endblock %}
+                </div>
+
+            </form>
     </div>
 {% endblock %}

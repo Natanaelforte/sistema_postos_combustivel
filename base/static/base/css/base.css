@@ -161,6 +161,10 @@ a:-webkit-any-link {
     color: black!important;
 }
 
+.cabecalho-menu-sair:hover {
+    color: white!important;
+}
+
 .cabecalho-menu-botao a {
     color:#333;
     text-decoration:none;

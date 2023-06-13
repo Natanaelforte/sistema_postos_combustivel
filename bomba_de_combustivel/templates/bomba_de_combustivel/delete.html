@@ -7,31 +7,23 @@
     <link rel="stylesheet" href="{% static 'base/css/delete.css' %}">
 {% endblock %}
 
-{% block corpo %}
-    <div class="titulo-app-bomba">
-        {% block app_titulo %}
-            <h1>Deletar Bomba</h1>
-        {% endblock %}
-    </div>
 
-    <div class="card-tabela">
-        {% block card_conteudo %}
-            <form method="post" class="form-card-conteudo">
-                {% csrf_token %}
-
-                <div class="card-conteudo-frase">
-                    <h2>Tem Certeza que Deseja Deletar o "{{ object }}"?</h2>
-                    {{ form }}
-                </div>
-
-                <div class="card-conteudo-botoes">
-                    <input type="submit" value="Deletar">
-                    <a class="card-conteudo-botao-voltar"  href="{% url 'bomba_de_combustivel:list' %}">Voltar</a>
-                </div>
-
-            </form>
-        {% endblock %}
-    </div>
+{% block app_titulo %}
+    <h1>Deletar Bomba</h1>
 {% endblock %}
+
+{% block card_conteudo_frase %}
+    <h2>Tem Certeza que Deseja Deletar o "{{ object }}"?</h2>
+    {{ form }}
+{% endblock %}
+
+{% block card_conteudo_botoes %}
+    <input type="submit" value="Deletar">
+    <a class="card-conteudo-botao-voltar"  href="{% url 'bomba_de_combustivel:list' %}">Voltar</a>
+{% endblock %}
+
+
+
+
 
 

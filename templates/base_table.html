@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block conteudo_tabela_style %}
+    <link rel="stylesheet" href="{% static 'cadastro_colaborador/style.css' %}">
+{% endblock %}
+
+
+
+<table id="tabela">
+    <thead>
+        <tr class="tabela-cabecalho">
+            {% block conteudo_tabela_cabecalho %}
+
+            {% endblock %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for colaborador in object_list %}
+            <tr class="tabela-corpo-linha">
+                {% block conteudo_tabela_corpo %}
+
+                {% endblock %}
+            </tr>
+        {% empty %}
+            {% block conteudo_tabela_erro %}
+
+            {% endblock %}
+        {% endfor %}
+    </tbody>
+</table>

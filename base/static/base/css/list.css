@@ -44,7 +44,10 @@ a:-webkit-any-link {
     padding: 10px;
     background-color: #b3b1b1;
     transition: all 0.5s;
-    color: black!important;
+}
+
+.cabecalho-menu-sair:hover {
+    color: white!important;
 }
 
 .cabecalho-app-bomba-novo {

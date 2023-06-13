@@ -121,3 +121,7 @@ input[type="submit" i]:hover {
     transition: all 0.5s;
     color: black;
 }
+
+.cabecalho-menu-sair:hover {
+    color: white!important;
+}

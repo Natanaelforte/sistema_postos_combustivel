@@ -3,7 +3,10 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        {% block title %}
         <title>Dashboard</title>
+        {% endblock %}
+
         {% block style %}
             <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
         {% endblock %}
