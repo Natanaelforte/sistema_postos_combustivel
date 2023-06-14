@@ -7,23 +7,24 @@ from django import forms
 class ColaboradorForm(BasePadraoForm):
     nome = forms.CharField(
         label=('Nome'),
-        widget=forms.CharField(attrs={'class': 'colaborador-nome', 'placeholder': 'Nome...'})
+        widget=forms.TextInput(attrs={'class': 'colaborador-nome'})
     )
     cpf = forms.CharField(
         label=('CPF'),
-        widget=forms.CharField(attrs={'class': 'colaborador-cpf', 'placeholder': 'CPF...'})
+        widget=forms.TextInput(attrs={'class': 'colaborador-cpf'})
     )
     contato = forms.CharField(
         label=('Contato'),
-        widget=forms.CharField(attrs={'class': 'colaborador-Contato', 'placeholder': 'Contato...'})
+        widget=forms.TextInput(attrs={'class': 'colaborador-Contato'})
     )
     endereco = forms.CharField(
         label=('Endereço'),
-        widget=forms.CharField(attrs={'class': 'colaborador-endereco', 'placeholder': 'Endereço...'})
+        widget=forms.TextInput(attrs={'class': 'colaborador-endereco'})
     )
     funcao = forms.ModelChoiceField(
         label=('Função'),
-        widget=forms.ChoiceField(attrs={'class': 'colaborador-funcao', 'placeholder': 'Função...'})
+        widget=forms.Select(attrs={'class': 'colaborador-funcao'}),
+        queryset=Colaborador.objects.none()
     )
 
     class Meta:

@@ -18,10 +18,12 @@ class ColaboradorCreateView(CreateBaseView):
     def get_success_url(self):
         return reverse('colaborador:list')
 
+
 class ColaboradorTableView(TableBaseView):
     model = Colaborador
     search_fields = ['nome']
     template_name = 'colaborador/table.html'
+
 
 class ColaboradorUpdateView(UpdateBaseView):
     model = Colaborador

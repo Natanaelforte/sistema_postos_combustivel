@@ -9,12 +9,29 @@
 
 {% block corpo %}
     <div class="titulo-app-bomba">
-        <h1>Nova bomba</h1>
+        {% block titulo_app %}
+
+        {% endblock %}
     </div>
 
     <div class="card-tabela">
-        {% block card_conteudo %}
 
-        {% endblock %}
+        <form method="POST" enctype="multipart/form-data" class="form-card-conteudo">
+            {% csrf_token %}
+
+            <div class="card-conteudo-imputs">
+                {% block card_conteudo %}
+
+                {% endblock %}
+            </div>
+
+            <div class="card-conteudo-botoes">
+                {% block card_conteudo_botoes %}
+
+                {% endblock %}
+            </div>
+
+        </form>
+
     </div>
 {% endblock %}

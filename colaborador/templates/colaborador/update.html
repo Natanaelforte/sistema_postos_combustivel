@@ -1,8 +1,27 @@
 {% extends 'base_form.html' %}
 {% load static %}
 
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'cadastro_colaborador/upgrade.css' %}">
+{% endblock %}
+
+
+{% block card_conteudo %}
+    {% for field in form %}
+        {% if not field.is_hidden %}
+           <div class="card_conteudo_label">{{ field.label }}:</div>
+
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block card_conteudo_botoes %}
     <input type="submit" value="Atualizar">
-    <a href="{% url 'colaborador:list' %}">Voltar</a>
-</form>
+    <a class="card-conteudo-botao-voltar" href="{% url 'colaborador:list' %}">Voltar</a>
+{% endblock %}
+
