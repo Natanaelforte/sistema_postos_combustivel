@@ -13,7 +13,7 @@ class BombaListView(ListBaseView):
 
 class BombaTableView(TableBaseView):
     model = Bomba
-    search_fields = ['numero']
+    search_fields = [('numero',)]
     template_name = 'bomba_de_combustivel/table.html'
 
 

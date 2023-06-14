@@ -1,0 +1,59 @@
+{% extends 'base_table.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'combustivel/style.css' %}">
+{% endblock %}
+
+{% block conteudo_tabela_cabecalho %}
+    <th class="cabecalho-numero">Combustível</th>
+
+    <th class="cabecalho-acoes">Ações</th>
+{% endblock %}
+
+{% block conteudo_tabela_corpo %}
+    {% for combustivel in object_list %}
+            <tr class="tabela-corpo-linha">
+                <td class="tabela-corpo-nome">{{ combustivel.combustivel_tipo}}</td>
+
+                <td class="tabela-corpo-acaoes">
+                    <a href="{% url 'combustivel:update' combustivel.pk %}" class="botao-acao-editar">Editar</a>
+                    <a href="{% url 'combustivel:delete' combustivel.pk %}" class="botao-acao-excluir">Excluir</a>
+                </td>
+            </tr>
+    {% empty %}
+        <h3>Não há combustivel relacionádo ao posto escolhido.</h3>
+    {% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+{#<table id="tabela">#}
+{#    <thead>#}
+{#        <tr class="tabela-cabecalho">#}
+{#            <th class="cabecalho-numero">Combustível</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{##}
+{#    <tbody>#}
+{#        {% for combustivel in object_list %}#}
+{#            <tr class="tabela-corpo-linha">#}
+{#                <td class="tabela-corpo-bomba">{{ combustivel }}</td>#}
+{##}
+{#                <td class="tabela-corpo-acaoes">#}
+{#                    <a href="{% url 'combustivel:update' combustivel.pk %}" class="botao-acao-editar">Editar</a>#}
+{#                    <a href="{% url 'combustivel:delete' combustivel.pk %}" class="botao-acao-excluir">Excluir</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% empty %}#}
+{#                <h3>Não há combustivel relacionádo ao posto escolhido.</h3>#}
+{#        {% endfor %}#}
+{#    </tbody>#}
+{#</table>#}

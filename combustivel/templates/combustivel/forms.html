@@ -1,11 +1,26 @@
-<form method="POST" enctype="multipart/form-data">
+{% extends 'base_form.html' %}
+{% load static %}
 
-    <!-- Security token -->
-    {% csrf_token %}
+{% block style %}
+    {{ block.super }}
 
-    <!-- Using the formset -->
-    {{ form.as_p }}
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'combustivel/style.css' %}">
+{% endblock %}
 
+
+{% block card_conteudo %}
+    {% for field in form %}
+        {% if not field.is_hidden %}
+           <div class="card_conteudo_label">{{ field.label }}:</div>
+
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block card_conteudo_botoes %}
     <input type="submit" value="Criar">
-    <a href="{% url 'combustivel:list' %}">Voltar</a>
-</form>
+    <a class="card-conteudo-botao-voltar" href="{% url 'combustivel:list' %}">Voltar</a>
+{% endblock %}

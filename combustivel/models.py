@@ -17,6 +17,10 @@ class Combustivel(models.Model):
         return f'{self.get_tipo_de_combustivel_display()} / {self.posto}'
 
     @property
+    def combustivel_tipo(self):
+        return self.get_tipo_de_combustivel_display()
+
+    @property
     def valor_vigente(self):
         vigencias_de_precos = self.vigencias_de_precos.filter(
             data_de_inicio__lte=datetime.now(), data_de_termino__gte=datetime.now(), ativo=True

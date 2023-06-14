@@ -41,8 +41,17 @@ class UpdateBaseView(PostoUsuarioContextMixin, UpdateView):
 class DeleteBaseView(PostoUsuarioContextMixin, DeleteView):
     pass
 
+
 class TableBaseView(ListBaseView):
     search_fields = None
+
+    def get_value(self, search, search_field):
+        if len(search_field) > 1 and type(search_field[1]) == list:
+            for c in search_field[1]:
+                if search in c[1]:
+                    return c[0]
+
+        return search
 
     def get_queryset(self):
         search = self.request.GET.get('search')
@@ -52,7 +61,7 @@ class TableBaseView(ListBaseView):
             kwwargs_search = {}
 
             for search_field in self.search_fields:
-                kwwargs_search[f'{search_field}__icontains'] = search
+                kwwargs_search[f'{search_field[0]}__icontains'] = self.get_value(search, search_field)
 
             queryset = queryset.filter(**kwwargs_search)
 

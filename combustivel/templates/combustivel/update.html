@@ -1,3 +1,33 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'combustivel/style.css' %}">
+{% endblock %}
+
+
+{% block card_conteudo %}
+    {% for field in form %}
+        {% if not field.is_hidden %}
+           <div class="card_conteudo_label">{{ field.label }}:</div>
+
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block card_conteudo_botoes %}
+    <input type="submit" value="Atualizar">
+    <a class="card-conteudo-botao-voltar" href="{% url 'combustivel:list' %}">Voltar</a>
+{% endblock %}
+
+
+
+
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Atualizar">

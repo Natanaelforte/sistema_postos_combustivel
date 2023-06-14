@@ -1,10 +1,8 @@
 {% load static %}
 
-{% block conteudo_tabela_style %}
-    <link rel="stylesheet" href="{% static 'cadastro_colaborador/style.css' %}">
+{% block style %}
+    <link rel="stylesheet" href="{% static 'base/css/table.css' %}">
 {% endblock %}
-
-
 
 <table id="tabela">
     <thead>
@@ -16,16 +14,8 @@
     </thead>
 
     <tbody>
-        {% for colaborador in object_list %}
-            <tr class="tabela-corpo-linha">
-                {% block conteudo_tabela_corpo %}
+        {% block conteudo_tabela_corpo %}
 
-                {% endblock %}
-            </tr>
-        {% empty %}
-            {% block conteudo_tabela_erro %}
-
-            {% endblock %}
-        {% endfor %}
+        {% endblock %}
     </tbody>
 </table>

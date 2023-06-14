@@ -1,0 +1,40 @@
+.cabecalho-numero {
+    width: 290px;
+}
+
+.cabecalho-funcao {
+    width: 290px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.cabecalho-acoes {
+    width: 120px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.tabela-cabecalho {
+    height: 30px;
+}
+
+.tabela-corpo-linha {
+    height: 30px;
+    border-bottom: 0.5px solid #c4c3c3;
+
+}
+
+.tabela-corpo-nome {
+    padding: 5px;
+}
+
+.tabela-corpo-funcao {
+    padding: 5px;
+    border-left: 0.5px solid #c4c3c3;
+}
+
+.tabela-corpo-acaoes {
+    padding-left: 10px;
+    padding-top: 2px;
+    border-left: 2px solid black;
+}

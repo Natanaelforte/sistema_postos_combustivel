@@ -9,18 +9,23 @@
 {% endblock %}
 
 {% block conteudo_tabela_corpo %}
-    <td class="tabela-corpo-nome">{{ colaborador.nome }}</td>
+    {% for colaborador in object_list %}
+            <tr class="tabela-corpo-linha">
+                <td class="tabela-corpo-nome">{{ colaborador.nome }}</td>
 
-    <td class="tabela-corpo-funcao">{{ colaborador.funcao }}</td>
+                <td class="tabela-corpo-funcao">{{ colaborador.funcao }}</td>
 
-    <td class="tabela-corpo-acaoes">
-        <a href="{% url 'colaborador:update' colaborador.pk %}" class="botao-acao-editar">Editar</a>
-        <a href="{% url 'colaborador:delete' colaborador.pk %}" class="botao-acao-excluir">Excluir</a>
-    </td>
+                <td class="tabela-corpo-acaoes">
+                    <a href="{% url 'colaborador:update' colaborador.pk %}" class="botao-acao-editar">Editar</a>
+                    <a href="{% url 'colaborador:delete' colaborador.pk %}" class="botao-acao-excluir">Excluir</a>
+                </td>
+            </tr>
+    {% empty %}
+        <h3>Não há Colaboradores relacionados ao posto escolhido.</h3>
+    {% endfor %}
+
 {% endblock %}
 
-{% block conteudo_tabela_erro %}
-       <h3>Não há Colaboradores relacionados ao posto escolhido.</h3>
-{% endblock %}
+
 
 

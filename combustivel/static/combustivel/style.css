@@ -1,0 +1,15 @@
+.cabecalho-numero {
+    width: 580px!important;
+}
+
+.combustivel-tipo {
+    padding: 10px;
+    width: 300px;
+    margin-top: 7px;
+    font-size: 15px;
+}
+
+.card-conteudo-imputs {
+    align-items: baseline!important;
+    margin-top: 200px!important;
+}

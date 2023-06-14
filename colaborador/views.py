@@ -21,7 +21,7 @@ class ColaboradorCreateView(CreateBaseView):
 
 class ColaboradorTableView(TableBaseView):
     model = Colaborador
-    search_fields = ['nome']
+    search_fields = [('nome',)]
     template_name = 'colaborador/table.html'
 
 
