@@ -1,3 +1,45 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Colaborador</title>
+{% endblock %}
+
+{% block listagem_titulo %}
+    <h1>Colaborador</h1>
+{% endblock %}
+
+{% block listagem_novo %}
+    <a href="{% url 'funcao:create' %}" class="cabecalho-app-bomba-novo">+ Novo</a>
+{% endblock %}
+
+{% block search %}
+    <div>
+        <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: João... ">
+        <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
+    </div>
+{% endblock %}
+
+{% block card_conteudo %}
+    {% include 'funcao/table.html' %}
+{% endblock %}
+
+{% block url_table %}
+    var urlTableBusca = "{% url 'funcao:table' %}"
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+
+    <script>
+        var urlTableBusca = "{% url 'funcao:table' %}"
+    </script>
+{% endblock %}
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

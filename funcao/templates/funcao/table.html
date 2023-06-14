@@ -1,0 +1,23 @@
+{% extends 'base_table.html' %}
+
+{% block conteudo_tabela_cabecalho %}
+    <th class="cabecalho-funcao">Função</th>
+
+    <th class="cabecalho-acoes">Ações</th>
+{% endblock %}
+
+{% block conteudo_tabela_corpo %}
+    {% for funcao in object_list %}
+            <tr class="tabela-corpo-linha">
+                <td class="tabela-corpo-funcao">{{ funcao.descricao }}</td>
+
+                <td class="tabela-corpo-acaoes">
+                    <a href="{% url 'funcao:update' funcao.pk %}" class="botao-acao-editar">Editar</a>
+                    <a href="{% url 'funcao:delete' funcao.pk %}" class="botao-acao-excluir">Excluir</a>
+                </td>
+            </tr>
+    {% empty %}
+        <h3>Não há Funções relacionadas ao posto escolhido.</h3>
+    {% endfor %}
+
+{% endblock %}
