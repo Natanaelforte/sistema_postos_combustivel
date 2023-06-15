@@ -1,11 +1,10 @@
 .cabecalho-numero {
-    width: 290px;
+    width: 580px;
 }
 
 .cabecalho-funcao {
-    width: 290px;
+    width: 580px;
     border-bottom: 2px solid black;
-    border-left: 2px solid black;
 }
 
 .cabecalho-acoes {

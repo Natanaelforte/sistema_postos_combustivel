@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block listagem_titulo %}
-    <h1>Colaborador</h1>
+    <h1>Função</h1>
 {% endblock %}
 
 {% block listagem_novo %}
@@ -15,7 +15,7 @@
 
 {% block search %}
     <div>
-        <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: João... ">
+        <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: Frentista... ">
         <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
     </div>
 {% endblock %}
@@ -40,27 +40,3 @@
 
 
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Função</title>
-</head>
-<body>
-    <h1>Funções</h1>
-
-    <a href="{% url 'funcao:create' %}">Novo</a>
-    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
-
-    <ul>
-    {% for funcao in object_list %}
-        <li>{{ funcao.descricao}}
-            <a href="{% url 'funcao:update' funcao.pk %}">Editar</a>
-            <a href="{% url 'funcao:delete' funcao.pk %}">Excluir</a>
-        </li>
-    {% empty %}
-        <li>Não há funções relacionádas ao posto escolhido.</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>

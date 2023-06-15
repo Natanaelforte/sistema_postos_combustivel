@@ -1,4 +1,10 @@
 {% extends 'base_table.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'cadastro_colaborador/table.css' %}">
+{% endblock %}
 
 {% block conteudo_tabela_cabecalho %}
     <th class="cabecalho-numero">Nome</th>

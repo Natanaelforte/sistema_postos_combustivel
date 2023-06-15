@@ -1,0 +1,9 @@
+.cabecalho-numero {
+    width: 290px!important;
+}
+
+.cabecalho-funcao {
+    width: 290px!important;
+    border-bottom: 2px solid black!important;
+    border-left: 2px solid black!important;
+}

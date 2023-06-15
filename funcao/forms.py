@@ -7,7 +7,7 @@ from .models import Funcao
 class FuncaoForm(BasePadraoForm):
     codigo = forms.CharField(
         label=('Código'),
-        widget=forms.TextInput(attrs={'class': 'funcao-cidigo'})
+        widget=forms.TextInput(attrs={'class': 'funcao-codigo'})
     )
     descricao = forms.CharField(
         label=('Descrição'),
