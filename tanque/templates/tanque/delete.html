@@ -1,6 +1,23 @@
-<form method="post">{% csrf_token %}
-    <p>Tem Certeza que Deseja Deletar o "{{ object }}"?</p>
+{% extends 'base_delete.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/delete.css' %}">
+{% endblock %}
+
+
+{% block app_titulo %}
+    <h1>Deletar Tanque</h1>
+{% endblock %}
+
+{% block card_conteudo_frase %}
+    <h2>Tem Certeza que Deseja Deletar o Tanque "{{ object.tanque_combustivel_nome }}"?</h2>
     {{ form }}
+{% endblock %}
+
+{% block card_conteudo_botoes %}
     <input type="submit" value="Deletar">
-    <a href="{% url 'tanque:list' %}">Voltar</a>
-</form>
+    <a class="card-conteudo-botao-voltar" href="{% url 'tanque:list' %}">Voltar</a>
+{% endblock %}

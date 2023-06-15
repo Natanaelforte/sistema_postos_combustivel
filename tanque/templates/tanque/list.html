@@ -1,3 +1,49 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Tanque</title>
+{% endblock %}
+
+{% block listagem_titulo %}
+    <h1>Função</h1>
+{% endblock %}
+
+{% block listagem_novo %}
+    <a href="{% url 'tanque:create' %}" class="cabecalho-app-bomba-novo">+ Novo</a>
+{% endblock %}
+
+{% block search %}
+    <div>
+        <input id="search" type="search" class="cabecalho-app-imput" placeholder="Exemplo: Gasolina... ">
+        <input type="submit" class="cabecalho-app-botao" onclick="carregarTabela()">
+    </div>
+{% endblock %}
+
+{% block card_conteudo %}
+    {% include 'tanque/table.html' %}
+{% endblock %}
+
+{% block url_table %}
+    var urlTableBusca = "{% url 'tanque:table' %}"
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="application/javascript" src="{% static 'bomba_de_combustivel/script.js' %}"></script>
+
+    <script>
+        var urlTableBusca = "{% url 'tanque:table' %}"
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

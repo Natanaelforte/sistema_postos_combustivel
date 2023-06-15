@@ -15,3 +15,7 @@ class Tanque(models.Model):
 
     def __str__(self):
         return f'Tanque / {self.combustivel}'
+
+    @property
+    def tanque_combustivel_nome(self):
+        return self.combustivel.combustivel_tipo

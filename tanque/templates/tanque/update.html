@@ -1,5 +1,30 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block style %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'base/css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'tanque/upgrade.css' %}">
+{% endblock %}
+
+{% block titulo_app %}
+ <h1>Editar Tanque</h1>
+{% endblock %}
+
+{% block card_conteudo %}
+    {% for field in form %}
+        {% if not field.is_hidden %}
+           <div class="card_conteudo_label">{{ field.label }}:</div>
+
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block card_conteudo_botoes %}
     <input type="submit" value="Atualizar">
-    <a href="{% url 'tanque:list' %}">Voltar</a>
-</form>
+    <a class="card-conteudo-botao-voltar" href="{% url 'tanque:list' %}">Voltar</a>
+{% endblock %}
+

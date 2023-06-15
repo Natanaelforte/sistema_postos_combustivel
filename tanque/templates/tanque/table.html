@@ -1,0 +1,23 @@
+{% extends 'base_table.html' %}
+
+{% block conteudo_tabela_cabecalho %}
+    <th class="cabecalho-funcao">Tanque</th>
+
+    <th class="cabecalho-acoes">Ações</th>
+{% endblock %}
+
+{% block conteudo_tabela_corpo %}
+    {% for tanque in object_list %}
+            <tr class="tabela-corpo-linha">
+                <td class="tabela-corpo-funcao">{{ tanque.tanque_combustivel_nome }}</td>
+
+                <td class="tabela-corpo-acaoes">
+                    <a href="{% url 'tanque:update' tanque.pk %}" class="botao-acao-editar">Editar</a>
+                    <a href="{% url 'tanque:delete' tanque.pk %}" class="botao-acao-excluir">Excluir</a>
+                </td>
+            </tr>
+    {% empty %}
+        <h3>Não há Tanques relacionados ao posto escolhido.</h3>
+    {% endfor %}
+
+{% endblock %}
