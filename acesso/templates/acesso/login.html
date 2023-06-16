@@ -8,66 +8,49 @@
     </head>
 
     <body>
-        {% block content %}
-            {% if form.errors %}
-                <p>Your username and password didn't match. Please try again.</p>
+        {% if form.errors %}
+            <p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Sua conta não tem acesso a esta página. Para prosseguir, faça o login com uma conta que tenha acesso.</p>
+            {% else %}
+                <p>Por favor, faça o login para ver esta página.</p>
             {% endif %}
+        {% endif %}
 
-            {% if next %}
-                {% if user.is_authenticated %}
-                    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-                {% else %}
-                    <p>Please login to see this page.</p>
-                {% endif %}
-            {% endif %}
+       <div class="box">
+           <form class="formcampos" method="post" action="{% url 'acesso:login' %}">
+                {% csrf_token %}
+                <table class="tbcampos">
+                    <tr>
+                        <td>{{ form.username }}</td>
+                    </tr>
 
-           <div class="box">
-               <form class="formcampos" method="post" action="{% url 'acesso:login' %}">
-                    {% csrf_token %}
-                    <table class="tbcampos">
-                        <tr>
-                            <td>{{ form.username }}</td>
-                        </tr>
+                    <tr>
+                        <td>{{ form.posto }}</td>
+                    </tr>
 
-                        <tr>
-                            <td>{{ form.posto }}</td>
-                        </tr>
+                    <tr>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                </table>
 
-                        <tr>
-                            <td>{{ form.password }}</td>
-                        </tr>
-                    </table>
-
-{#                    <div class="ab-box-login">#}
-{#                        <div class="ab-box-inputs-login">#}
-{#                            <div class="ab-input-login">{{ form.username }}</div>#}
-{##}
-{#                            <div class="ab-input-login">{{ form.username }}</div>#}
-{##}
-{#                            <div class="ab-input-login">{{ form.username }}</div>#}
-{#                        </div>#}
-{##}
-{#                        <div class="ab-box-button-login">#}
-{##}
-{#                        </div>#}
-{#                    </div>#}
-
-                    <input type="submit" value="Login" />
-                    <input type="hidden" name="next" value="{{ next }}" />
-               </form>
-           </div>
-
-              {# Assumes you setup the password_reset view in your URLconf #}
-{#              <p><a href="{% url 'password_reset' %}">Lost password?</a></p>#}
-        {% endblock %}
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script type="application/javascript" src="{% static 'acesso/script.js' %}"></script>
-{#        <script>window.onload = function () { alert("Está carregado!") } </script>#}
-
-        <script>
-            var urlApiPostos = {% url 'posto:list' %}
+                <input type="submit" value="Login" />
+                <input type="hidden" name="next" value="{{ next }}" />
+           </form>
+       </div>
 
 
-        </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script type="application/javascript" src="{% static 'acesso/script.js' %}"></script>
+
+    <script>
+        var urlApiPostos = {% url 'posto:list' %}
+
+
+    </script>
     </body>
 </html>

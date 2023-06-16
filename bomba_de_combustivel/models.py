@@ -15,7 +15,7 @@ class Bomba(models.Model):
         verbose_name_plural = 'Bombas de Combustível'
 
     def __str__(self):
-        return f'Bomba {self.numero} / {self.posto}.'
+        return f'Bomba {self.numero}.'
 
     @property
     def NumeroBombaMascara(self):

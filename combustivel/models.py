@@ -14,7 +14,7 @@ class Combustivel(models.Model):
         verbose_name_plural = 'Combustíveis'
 
     def __str__(self):
-        return f'{self.get_tipo_de_combustivel_display()} / {self.posto}'
+        return self.get_tipo_de_combustivel_display()
 
     @property
     def combustivel_tipo(self):

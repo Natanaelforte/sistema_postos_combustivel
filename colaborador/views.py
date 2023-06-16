@@ -39,14 +39,4 @@ class ColaboradorDeleteView(DeleteBaseView):
     template_name = 'colaborador/delete.html'
     success_url = reverse_lazy("colaborador:list")
 
-# def colaborador_json(request):
-#     username = request.GET.get('username', None)
-#
-#     if not username:
-#         HttpResponse({}, content_type="application/json")
-#
-#     colaborador_json_response = Colaborador.objects.filter(usuario__username=username)
-#
-#     data = serialize("json", colaborador_json_response, fields=('posto', 'nome', 'funcao', 'id'))
-#
-#     return HttpResponse(data, content_type="application/json")
+
