@@ -1,3 +1,5 @@
+from django.core.serializers import serialize
+from django.http import HttpResponse
 from django.urls import reverse, reverse_lazy
 
 from base.views import CreateBaseView, ListBaseView, UpdateBaseView, DeleteBaseView, TableBaseView
@@ -40,3 +42,11 @@ class ColaboradorDeleteView(DeleteBaseView):
     success_url = reverse_lazy("colaborador:list")
 
 
+class ColaboradorSelectView(ListBaseView):
+    model = Colaborador
+    template_name = 'abastecimento/list.html'
+
+    def get(self, request, *args, **kwargs):
+        colaboradores = serialize("json", self.get_queryset(), fields=('nome', 'id'))
+
+        return HttpResponse(colaboradores, content_type="application/json")

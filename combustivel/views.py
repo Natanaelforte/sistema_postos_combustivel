@@ -1,3 +1,7 @@
+import json
+
+from django.core.serializers import serialize
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView
 
@@ -40,3 +44,21 @@ class CombustivelDeleteView(DeleteBaseView):
     model = Combustivel
     template_name = 'combustivel/delete.html'
     success_url = reverse_lazy("combustivel:list")
+
+
+class CombustivelSelectView(ListBaseView):
+    model = Combustivel
+    template_name = 'abastecimento/list.html'
+
+    def get(self, request, *args, **kwargs):
+        combustiveis = self.get_queryset()
+
+        dict_combustiveis = []
+
+        for comb in combustiveis:
+            dict_combustiveis.append({
+                'pk': comb.pk,
+                'label': comb.combustivel_tipo
+            })
+
+        return JsonResponse({'resultados': dict_combustiveis})

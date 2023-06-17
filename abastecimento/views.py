@@ -3,6 +3,7 @@ from django.views.generic import DeleteView
 
 from abastecimento.forms import AbastecimentoForm
 from abastecimento.models import Abastecimento
+from base.mixins import PostoUsuarioContextMixin, PostoMixin
 from base.views import CreateBaseView, ListBaseView, UpdateBaseView
 
 
@@ -34,3 +35,6 @@ class AbastecimentoDeleteView(DeleteView):
     model = Abastecimento
     template_name = 'abastecimento/delete.html'
     success_url = reverse_lazy("abastecimento:list")
+
+
+
