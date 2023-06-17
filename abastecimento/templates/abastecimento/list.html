@@ -1,27 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Abastecimento</title>
-</head>
-<body>
-    <h1>Abastecimentos</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    <a href="{% url 'abastecimento:create' %}">Novo</a>
-    <a href="{% url 'inicio:dashboard' %}">Inicio</a>
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'abastecimento/style.css' %}">
+{% endblock %}
 
-    <ul>
-    {% for abastecimento in object_list %}
-        <li>{{ abastecimento.combustivel.get_tipo_de_combustivel_display}}
-            - Bomba {{ abastecimento.bomba.numero}} - {{ abastecimento.colaborador.nome}} /
-            {{ abastecimento.colaborador.funcao}} - {{ abastecimento.litros_abastecido}} litros -
-            {{ abastecimento.valor_total_display}} - {{ abastecimento.data}}
-            <a href="{% url 'abastecimento:update' abastecimento.pk %}">Editar</a>
-            <a href="{% url 'abastecimento:delete' abastecimento.pk %}">Excluir</a>
-        </li>
-    {% empty %}
-        <li>Não há abastecimentos relacionádos ao posto escolhido.</li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+
+{% block corpo %}
+
+    <div class="div-base-card">
+        <div class="card-criar">
+            <p>ola mundo</p>
+        </div>
+
+        <div class="card-tabela">
+            <p>ola mundo</p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="pt-br">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Abastecimento</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Abastecimentos</h1>#}
+{##}
+{#    <a href="{% url 'abastecimento:create' %}">Novo</a>#}
+{#    <a href="{% url 'inicio:dashboard' %}">Inicio</a>#}
+{##}
+{#    <ul>#}
+{#    {% for abastecimento in object_list %}#}
+{#        <li>{{ abastecimento.combustivel.get_tipo_de_combustivel_display}}#}
+{#            - Bomba {{ abastecimento.bomba.numero}} - {{ abastecimento.colaborador.nome}} /#}
+{#            {{ abastecimento.colaborador.funcao}} - {{ abastecimento.litros_abastecido}} litros -#}
+{#            {{ abastecimento.valor_total_display}} - {{ abastecimento.data}}#}
+{#            <a href="{% url 'abastecimento:update' abastecimento.pk %}">Editar</a>#}
+{#            <a href="{% url 'abastecimento:delete' abastecimento.pk %}">Excluir</a>#}
+{#        </li>#}
+{#    {% empty %}#}
+{#        <li>Não há abastecimentos relacionádos ao posto escolhido.</li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+{#</body>#}
+{#</html>#}
