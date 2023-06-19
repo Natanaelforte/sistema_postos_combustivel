@@ -3,28 +3,27 @@
 
 {% block style %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'cadastro_colaborador/table.css' %}">
+    <link rel="stylesheet" href="{% static 'abastecimento/style.css' %}">
 {% endblock %}
 
 {% block conteudo_tabela_cabecalho %}
-    <th class="cabecalho-numero">Nome</th>
+    <th class="cabecalho-tabela-primeiro">Bomba</th>
+    <th class="cabecalho-tabela">Combustível</th>
+    <th class="cabecalho-tabela">Colaborador</th>
+    <th class="cabecalho-tabela">Litros</th>
+    <th class="cabecalho-tabela">Valor Total</th>
 
-    <th class="cabecalho-funcao">Função</th>
-
-    <th class="cabecalho-acoes">Ações</th>
 {% endblock %}
 
 {% block conteudo_tabela_corpo %}
-    {% for colaborador in object_list %}
+    {% for abastecimento in object_list %}
             <tr class="tabela-corpo-linha">
-                <td class="tabela-corpo-nome">{{ colaborador.nome }}</td>
+                <td class="tabela-corpo-primeiro">{{ abastecimento.bomba.NumeroBombaMascara }}</td>
+                <td class="tabela-corpo">{{ abastecimento.combustivel.get_tipo_de_combustivel_display }}</td>
+                <td class="tabela-corpo">{{ abastecimento.colaborador.nome }}</td>
+                <td class="tabela-corpo">{{ abastecimento.litros_abastecido }}</td>
+                <td class="tabela-corpo">{{ abastecimento.valor_total_display }}</td>
 
-                <td class="tabela-corpo-funcao">{{ colaborador.funcao }}</td>
-
-                <td class="tabela-corpo-acaoes">
-                    <a href="{% url 'colaborador:update' colaborador.pk %}" class="botao-acao-editar">Editar</a>
-                    <a href="{% url 'colaborador:delete' colaborador.pk %}" class="botao-acao-excluir">Excluir</a>
-                </td>
             </tr>
     {% empty %}
         <h3>Não há Colaboradores relacionados ao posto escolhido.</h3>

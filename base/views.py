@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, TemplateView
 
 from base.mixins import PostoUsuarioContextMixin
 from posto.models import Posto
@@ -71,3 +71,22 @@ class TableBaseView(ListBaseView):
         resutado = super().get(request, *args, **kwargs)
 
         return JsonResponse({'tabela': resutado.rendered_content})
+
+
+class ActionBaseView(PostoUsuarioContextMixin, TemplateView):
+    def do_action(self):
+        raise NotImplemented('not implemented')
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+
+        try:
+            self.do_action()
+            data['resposta'] = 'sim'
+        except Exception as e:
+            data['resposta'] = 'não'
+            data['mensagem'] = str(e)
+
+            """mostrar mensagem de erro 'Erro ao tentar salvar {str(e)}' e a resposta não"""
+
+        return JsonResponse(data)

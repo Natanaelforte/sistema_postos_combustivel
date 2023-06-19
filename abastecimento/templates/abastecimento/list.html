@@ -12,6 +12,7 @@
     <div class="div-base-card">
         <div class="card-criar">
             <div class="card-criar-inputs">
+                {% csrf_token %}
                 <label for="card-campo-bomba">Bomba:</label>
                 <select name="" class="card-campo-bomba" id="card-campo-bomba">
 
@@ -24,20 +25,22 @@
 
                 <label for="card-campo-colaborador">colaborador:</label>
                 <select name="" class="card-campo-bomba" id="card-campo-colaborador">
-                    <
+
                 </select>
 
                 <label for="card-campo-colaborador">Litros:</label>
-                <input class="card-campo-litros" type="number">
+                <input class="card-campo-litros" type="number" id="card-campo-litros">
             </div>
 
             <div>
-                <input type="submit" class="cabecalho-app-botao" onclick="">
+                <input type="submit" class="cabecalho-app-botao" onclick="CriarAbastecimento()">
             </div>
         </div>
 
         <div class="card-tabela">
-            <p>ola mundo</p>
+            <div id="tabela">
+                {% include 'abastecimento/table.html' %}
+            </div>
         </div>
 
     </div>
@@ -51,6 +54,10 @@
         var urlApiBombas = "{% url 'bomba_de_combustivel:select' %}"
         var urlApiCombustiveis = "{% url 'combustivel:select' %}"
         var urlApiColaboradores = "{% url 'colaborador:select' %}"
+        var urlApiAbastecimento = "{% url 'abastecimento:create' %}"
+        var urlTableBusca = "{% url 'bomba_de_combustivel:table' %}"
+
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     </script>
 
     <script type="application/javascript" src="{% static 'abastecimento/script.js' %}"></script>

@@ -71,6 +71,44 @@ function carregarSelectColaborador() {
     })
 }
 
+function CriarAbastecimento() {
+    $.ajax({
+        headers: {'X-CSRFToken': csrftoken},
+        url: `${urlApiAbastecimento}?data=now`,
+        type: "POST",
+        data: {
+            bomba: $('#card-campo-bomba').val(),
+            combustivel: $('#card-campo-combustivel').val(),
+            colaborador: $('#card-campo-colaborador').val(),
+            litros_abastecido: $('#card-campo-litros').val(),
+        },
+        dataType: "json",
+        success: function (dados) {
+            if (dados.resposta == 'sim') {
+                $('#card-campo-litros').val(0);
+            } else {
+                alert(dados.menssagem)
+            }
+
+        }
+    })
+}
+
+function carregarTabela() {
+    $.ajax({
+        url: urlTableBusca,
+        type: 'GET',
+        data: {
+            bomba: $('#card-campo-bomba').val(),
+            combustivel: $('#card-campo-combustivel').val(),
+            colaborador: $('#card-campo-colaborador').val(),
+        },
+        success: function (data) {
+            $('#tabela').html(data.tabela)
+        }
+    })
+}
+
 $(document).ready(function() {
     carregarSelectBombas();
     carregarSelectCombustivel();

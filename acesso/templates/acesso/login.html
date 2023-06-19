@@ -14,7 +14,10 @@
 
         {% if next %}
             {% if user.is_authenticated %}
-                <p>Sua conta não tem acesso a esta página. Para prosseguir, faça o login com uma conta que tenha acesso.</p>
+                <p>
+                    Sua conta não tem acesso a esta página.
+                    Para prosseguir, faça o login com uma conta que tenha acesso.
+                </p>
             {% else %}
                 <p>Por favor, faça o login para ver esta página.</p>
             {% endif %}

@@ -76,3 +76,25 @@
     margin-top: 7px;
     font-size: 20px;
 }
+
+.cabecalho-tabela-primeiro {
+    width: 295px!important;
+    border-bottom: 2px solid black;
+}
+
+.cabecalho-tabela {
+    width: 295px!important;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.tabela-corpo-primeiro {
+    padding: 5px;
+    border-bottom: 0.5px solid #c4c3c3;
+
+}
+.tabela-corpo {
+    padding: 5px;
+    border-bottom: 0.5px solid #c4c3c3;
+    border-left: 0.5px solid #c4c3c3;
+}
