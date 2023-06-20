@@ -12,33 +12,37 @@
     <div class="div-base-card">
         <div class="card-criar">
             <div class="card-criar-inputs">
-                {% csrf_token %}
-                <label for="card-campo-bomba">Bomba:</label>
-                <select name="" class="card-campo-bomba" id="card-campo-bomba">
+                <div class="div-select">
+                    <label class="label-select" for="card-campo-bomba">Bomba:</label>
+                    <select name="" class="card-campo-bomba" id="card-campo-bomba">
 
-                </select>
+                    </select>
 
-                <label for="card-campo-cobustivel">Combustível:</label>
-                <select name="" class="card-campo-bomba" id="card-campo-combustivel">
+                    <label class="label-select" for="card-campo-cobustivel">Combustível:</label>
+                    <select name="" class="card-campo-bomba" id="card-campo-combustivel">
 
-                </select>
+                    </select>
 
-                <label for="card-campo-colaborador">colaborador:</label>
-                <select name="" class="card-campo-bomba" id="card-campo-colaborador">
+                    <label class="label-select" for="card-campo-colaborador">colaborador:</label>
+                    <select name="" class="card-campo-bomba" id="card-campo-colaborador">
 
-                </select>
+                    </select>
 
-                <label for="card-campo-colaborador">Litros:</label>
-                <input class="card-campo-litros" type="number" id="card-campo-litros">
+                    <label class="label-select" for="card-campo-colaborador">Litros:</label>
+                    <input class="card-campo-litros" type="number" id="card-campo-litros">
+
+                    <h2 class="valor-total" id="valor-total">Total: R$ 0,00</h2>
+                </div>
             </div>
 
-            <div>
+            <div class="div-card-botao">
                 <input type="submit" class="cabecalho-app-botao" onclick="CriarAbastecimento()">
+                <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-botao-inicio"> Inicio</a>
             </div>
         </div>
 
         <div class="card-tabela">
-            <div id="tabela">
+            <div id="abastecimento-tabela">
                 {% include 'abastecimento/table.html' %}
             </div>
         </div>
@@ -55,7 +59,8 @@
         var urlApiCombustiveis = "{% url 'combustivel:select' %}"
         var urlApiColaboradores = "{% url 'colaborador:select' %}"
         var urlApiAbastecimento = "{% url 'abastecimento:create' %}"
-        var urlTableBusca = "{% url 'bomba_de_combustivel:table' %}"
+        var urlTableBusca = "{% url 'abastecimento:table' %}"
+        var urlBuscarValor = "{% url 'abastecimento:valor' %}"
 
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     </script>

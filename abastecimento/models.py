@@ -22,16 +22,19 @@ class Abastecimento(models.Model):
     def __str__(self):
         return f'Abastecido por, {self.colaborador}, na {self.bomba} as {self.data.strftime("%H:%M:%S, %d/%m/%Y")}.'
 
-    @property
-    def valor_total(self):
+    def calculate_valor_total(self, litros=None):
         valor_vigente = self.combustivel.valor_vigente
-        litros = self.litros_abastecido
+
+        if not litros:
+            litros = self.litros_abastecido
+
         valor = valor_vigente * litros
+
         return valor
 
     @property
     def valor_total_display(self):
-        return f'R$ {self.valor_total:.2f}'
+        return f'R$ {self.calculate_valor_total():.2f}'
 
         # self.valor_total[]
 

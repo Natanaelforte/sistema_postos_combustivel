@@ -72,6 +72,7 @@ function carregarSelectColaborador() {
 }
 
 function CriarAbastecimento() {
+
     $.ajax({
         headers: {'X-CSRFToken': csrftoken},
         url: `${urlApiAbastecimento}?data=now`,
@@ -86,8 +87,9 @@ function CriarAbastecimento() {
         success: function (dados) {
             if (dados.resposta == 'sim') {
                 $('#card-campo-litros').val(0);
+                carregarTabela();
             } else {
-                alert(dados.menssagem)
+                alert(dados.mensagem)
             }
 
         }
@@ -104,7 +106,28 @@ function carregarTabela() {
             colaborador: $('#card-campo-colaborador').val(),
         },
         success: function (data) {
-            $('#tabela').html(data.tabela)
+            $('#abastecimento-tabela').html(data.tabela)
+        }
+    })
+}
+
+function carregarValor() {
+    $.ajax({
+        headers: {'X-CSRFToken': csrftoken},
+        url: urlBuscarValor,
+        type: 'POST',
+        data: {
+            litros: $('#card-campo-litros').val(),
+            combustivel: $('#card-campo-combustivel').val()
+        },
+        success: function (data) {
+            console.log(data)
+            if (data.resposta == 'sim') {
+                $('#valor-total').html(data.valor);
+            } else {
+                alert(dados.mensagem)
+            }
+
         }
     })
 }
@@ -113,4 +136,19 @@ $(document).ready(function() {
     carregarSelectBombas();
     carregarSelectCombustivel();
     carregarSelectColaborador()
+})
+
+function onInputValor() {
+    if ($('#card-campo-litros').val().length >= 1)  {
+        carregarValor()
+    } else {
+        $('#valor-total').html('Total: R$ 0,00')
+    }
+}
+
+$(document).ready(function() {
+    $("#card-campo-bomba").on('change',carregarTabela);
+    $("#card-campo-combustivel").on('change',carregarTabela);
+    $("#card-campo-colaborador").on('change',carregarTabela)
+    $("#card-campo-litros").on('input',onInputValor)
 })
