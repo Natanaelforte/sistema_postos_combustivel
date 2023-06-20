@@ -13,6 +13,7 @@
         <div class="card-criar">
             <div class="card-criar-inputs">
                 <div class="div-select">
+                    {% csrf_token %}
                     <label class="label-select" for="card-campo-bomba">Bomba:</label>
                     <select name="" class="card-campo-bomba" id="card-campo-bomba">
 
@@ -68,36 +69,3 @@
     <script type="application/javascript" src="{% static 'abastecimento/script.js' %}"></script>
 
 {% endblock %}
-
-
-
-
-
-
-{#<!DOCTYPE html>#}
-{#<html lang="pt-br">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Abastecimento</title>#}
-{#</head>#}
-{#<body>#}
-{#    <h1>Abastecimentos</h1>#}
-{##}
-{#    <a href="{% url 'abastecimento:create' %}">Novo</a>#}
-{#    <a href="{% url 'inicio:dashboard' %}">Inicio</a>#}
-{##}
-{#    <ul>#}
-{#    {% for abastecimento in object_list %}#}
-{#        <li>{{ abastecimento.combustivel.get_tipo_de_combustivel_display}}#}
-{#            - Bomba {{ abastecimento.bomba.numero}} - {{ abastecimento.colaborador.nome}} /#}
-{#            {{ abastecimento.colaborador.funcao}} - {{ abastecimento.litros_abastecido}} litros -#}
-{#            {{ abastecimento.valor_total_display}} - {{ abastecimento.data}}#}
-{#            <a href="{% url 'abastecimento:update' abastecimento.pk %}">Editar</a>#}
-{#            <a href="{% url 'abastecimento:delete' abastecimento.pk %}">Excluir</a>#}
-{#        </li>#}
-{#    {% empty %}#}
-{#        <li>Não há abastecimentos relacionádos ao posto escolhido.</li>#}
-{#    {% endfor %}#}
-{#    </ul>#}
-{#</body>#}
-{#</html>#}

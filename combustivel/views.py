@@ -1,9 +1,6 @@
-import json
-
-from django.core.serializers import serialize
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DeleteView
+
 
 from base.views import CreateBaseView, ListBaseView, UpdateBaseView, DeleteBaseView, TableBaseView
 from combustivel.choices.choices_combustivel import C_TIPO_DE_COMBUSTIVEL

@@ -3,7 +3,6 @@ from bomba_de_combustivel.models import Bomba
 from colaborador.models import Colaborador
 from combustivel.models import Combustivel
 from .models import Abastecimento
-from django import forms
 
 
 class AbastecimentoForm(BasePadraoForm):
@@ -26,8 +25,3 @@ class AbastecimentoForm(BasePadraoForm):
             self.fields['bomba'].queryset = bomba
 
             self.fields['litros_abastecido'].required = True
-
-    # def clean_litros_abastecido(self):
-    #     litros = self.cleaned_data['litros_abastecido']
-    #     if litros > 1:
-    #         raise forms.ValidationError('Teste de mensagem de erro!')

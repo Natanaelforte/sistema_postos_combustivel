@@ -4,7 +4,7 @@ from django.views.generic import DeleteView
 
 from abastecimento.forms import AbastecimentoForm
 from abastecimento.models import Abastecimento
-from base.views import CreateBaseView, ListBaseView, UpdateBaseView, ActionBaseView, TableBaseView
+from base.views import ListBaseView, UpdateBaseView, ActionBaseView, TableBaseView
 from bomba_de_combustivel.models import Bomba
 from colaborador.models import Colaborador
 from combustivel.models import Combustivel

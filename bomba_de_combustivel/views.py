@@ -1,8 +1,7 @@
 from django.core.serializers import serialize
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.urls import reverse, reverse_lazy
 
-from base.mixins import PostoMixin
 from base.views import CreateBaseView, ListBaseView, UpdateBaseView, TableBaseView, DeleteBaseView
 from .forms import BombaForm
 from .models import Bomba

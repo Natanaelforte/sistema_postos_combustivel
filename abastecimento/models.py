@@ -36,6 +36,3 @@ class Abastecimento(models.Model):
     def valor_total_display(self):
         return f'R$ {self.calculate_valor_total():.2f}'
 
-        # self.valor_total[]
-
-        # return f'{}.{}.{}-{}'

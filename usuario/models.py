@@ -10,6 +10,3 @@ class Usuario(AbstractUser):
         db_table = 'Usuario'
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
-
-    # def __str__(self):
-    #     return f'{self.nome} / {self.funcao}'

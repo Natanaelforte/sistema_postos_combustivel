@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 
 from bomba_de_combustivel import views
