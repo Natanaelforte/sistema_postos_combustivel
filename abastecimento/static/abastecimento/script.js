@@ -85,7 +85,7 @@ function CriarAbastecimento() {
         },
         dataType: "json",
         success: function (dados) {
-            if (dados.resposta == 'sim') {
+            if (dados.resposta === 'sim') {
                 $('#card-campo-litros').val(0);
                 carregarTabela();
             } else {
@@ -121,13 +121,31 @@ function carregarValor() {
             combustivel: $('#card-campo-combustivel').val()
         },
         success: function (data) {
-            console.log(data)
             if (data.resposta == 'sim') {
                 $('#valor-total').html(data.valor);
             } else {
                 alert(dados.mensagem)
             }
 
+        }
+    })
+}
+
+function gerarRelatorio() {
+    $.ajax({
+        url: urlBuscarRelatorio,
+        type: 'GET',
+        data: {
+            bomba: $('#card-campo-bomba').val(),
+            combustivel: $('#card-campo-combustivel').val(),
+            colaborador: $('#card-campo-colaborador').val(),
+        },
+        success: function (data) {
+            if (data.resposta == 'sim') {
+                $(document).window.open(data.relatrorio);
+            } else {
+                alert(dados.mensagem)
+            }
         }
     })
 }

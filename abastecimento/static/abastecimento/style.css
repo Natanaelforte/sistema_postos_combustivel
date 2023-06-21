@@ -82,6 +82,24 @@
     transition: all 0.5s;
 }
 
+.cabecalho-app-botao-imprimir {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #999910;
+    color: #030303 !important;
+    margin-left: 171px;
+}
+
+.cabecalho-app-botao-imprimir:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fdfd19;
+    color: black!important;
+    transition: all 0.5s;
+}
+
 .card-campo-bomba {
     padding: 10px;
     width: 300px;

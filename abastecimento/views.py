@@ -1,6 +1,8 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView
+import pydf
 
 from abastecimento.forms import AbastecimentoForm
 from abastecimento.models import Abastecimento
@@ -144,3 +146,105 @@ class AbastecimentoValorTotal(ActionBaseView):
             """mostrar mensagem de erro 'Erro ao tentar salvar {str(e)}' e a resposta não"""
 
         return JsonResponse(data)
+
+
+class AbastecimentoRelatorioPdf(TableBaseView):
+    model = Abastecimento
+    template_name = 'abastecimento/relatorio_pdf/body.html'
+
+    def _try_get_param(self, param_name):
+        try:
+            return self.request.GET.get(param_name)
+        except:
+            pass
+
+    def _try_get_instance(self, class_name, pk):
+        try:
+            return class_name.objects.get(pk=pk)
+        except:
+            raise Exception(f'{class_name} ou {pk}, não informados.')
+
+    def get_queryset(self):
+
+        queryset = super().get_queryset()
+
+        bomba_id = self._try_get_param('bomba')
+
+        if bomba_id:
+            queryset = queryset.filter(bomba__id=bomba_id)
+
+        combustivel_id = self._try_get_param('combustivel')
+
+        if combustivel_id:
+            queryset = queryset.filter(combustivel_id=combustivel_id)
+
+        colaborador_id = self._try_get_param('colaborador')
+
+        if colaborador_id:
+            queryset = queryset.filter(colaborador_id=colaborador_id)
+
+        return queryset
+
+    def get_response(self, context):
+
+        html = render_to_string(self.template_name, context)
+
+        html_header_str = render_to_string('abastecimento/relatorio_pdf/header.html', context)
+        html_header_file = pydf.NamedTemporaryFile(suffix='.html')
+        html_header_file.write(html_header_str.encode('utf8'))
+        html_header_file.seek(0)
+
+        html_footer_str = render_to_string('abastecimento/relatorio_pdf/footer.html', context)
+        html_footer_file = pydf.NamedTemporaryFile(suffix='.html')
+        html_footer_file.write(html_footer_str.encode('utf8'))
+        html_footer_file.seek(0)
+
+        report_pdf = pydf.generate_pdf(html,
+                                       page_size='A4',
+                                       orientation='portrait',
+                                       margin_left='5mm',
+                                       margin_right='5mm',
+                                       header_html=html_header_file.name,
+                                       footer_html=html_footer_file.name,
+                                       )
+
+        response = HttpResponse(report_pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'inline; filename="relatório-abastecimento.pdf"'
+
+        return response
+
+    def context_create(self):
+
+        quetyset = self.get_queryset()
+
+        bomba_id = self._try_get_param('bomba')
+        combustivel_id = self._try_get_param('combustivel')
+        colaborador_id = self._try_get_param('colaborador')
+
+        bomba = self._try_get_instance(Bomba, bomba_id)
+        combustivel = self._try_get_instance(Combustivel, combustivel_id)
+        colaborador = self._try_get_instance(Colaborador, colaborador_id)
+
+        context = {
+            'bomba': bomba,
+            'combustivel': combustivel,
+            'colaborador': colaborador,
+            'abastecimentos': quetyset
+        }
+        return context
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        context = self.context_create()
+
+        try:
+            response = self.get_response(context)
+            data['resposta'] = 'sim'
+            data['relatorio'] = response
+        except Exception as e:
+            data['resposta'] = 'não'
+            data['mensagem'] = 'Não foi possivel calcular o valor'
+
+            """mostrar mensagem de erro 'Erro ao tentar salvar {str(e)}' e a resposta não"""
+
+        return data

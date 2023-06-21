@@ -37,8 +37,11 @@
             </div>
 
             <div class="div-card-botao">
-                <input type="submit" class="cabecalho-app-botao" onclick="CriarAbastecimento()">
+                <input  type="submit" class="cabecalho-app-botao" onclick="CriarAbastecimento()">
                 <a href="{% url 'inicio:dashboard' %}" class="cabecalho-app-botao-inicio"> Inicio</a>
+
+                <input type="submit" value="Imprimir" class="cabecalho-app-botao-imprimir"
+                    onclick="gerarRelatorio()">
             </div>
         </div>
 
@@ -62,6 +65,7 @@
         var urlApiAbastecimento = "{% url 'abastecimento:create' %}"
         var urlTableBusca = "{% url 'abastecimento:table' %}"
         var urlBuscarValor = "{% url 'abastecimento:valor' %}"
+        var urlBuscarRelatorio = "{% url 'abastecimento:relatorio' %}"
 
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     </script>

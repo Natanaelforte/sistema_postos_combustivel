@@ -1,0 +1,21 @@
+
+.tabela-cabecalho {
+    height: 30px;
+}
+
+.cabecalho-tabela {
+    width: 295px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.tabela-corpo-linha {
+    height: 30px;
+    border-bottom: 0.5px solid black;
+}
+
+.tabela-corpo {
+    padding: 5px;
+    border-bottom: 0.5px solid black;
+    border-left: 0.5px solid black;
+}
