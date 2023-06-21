@@ -154,15 +154,25 @@ class AbastecimentoRelatorioPdf(TableBaseView):
 
     def _try_get_param(self, param_name):
         try:
-            return self.request.GET.get(param_name)
+            if param_name:
+                parametro = self.request.GET.get(param_name)
+
+                if parametro and parametro == 'null':
+                    return None
+
+                return parametro
+            else:
+                return None
         except:
             pass
 
     def _try_get_instance(self, class_name, pk):
         try:
-            return class_name.objects.get(pk=pk)
+            instance = class_name.objects.get(pk=pk)
+            return instance
         except:
-            raise Exception(f'{class_name} ou {pk}, não informados.')
+            instance = None
+            return instance
 
     def get_queryset(self):
 
@@ -202,7 +212,7 @@ class AbastecimentoRelatorioPdf(TableBaseView):
         report_pdf = pydf.generate_pdf(html,
                                        page_size='A4',
                                        orientation='portrait',
-                                       margin_left='5mm',
+                                       margin_left='20mm',
                                        margin_right='5mm',
                                        header_html=html_header_file.name,
                                        footer_html=html_footer_file.name,
@@ -234,17 +244,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
         return context
 
     def get(self, request, *args, **kwargs):
-        data = {}
         context = self.context_create()
 
-        try:
-            response = self.get_response(context)
-            data['resposta'] = 'sim'
-            data['relatorio'] = response
-        except Exception as e:
-            data['resposta'] = 'não'
-            data['mensagem'] = 'Não foi possivel calcular o valor'
-
-            """mostrar mensagem de erro 'Erro ao tentar salvar {str(e)}' e a resposta não"""
-
-        return data
+        return self.get_response(context)

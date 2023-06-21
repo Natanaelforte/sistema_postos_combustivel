@@ -3,40 +3,72 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'abastecimento/style_pdf.css' %}">
+
+    <style>
+        .tabela-cabecalho {
+            height: 30px;
+        }
+
+        .cabecalho-tabela {
+            width: 295px;
+            border: 2px solid black;
+            border-collapse: collapse;
+
+        }
+
+        .tabela-corpo-linha {
+            height: 30px;
+
+        }
+
+        .tabela-corpo {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+        }
+
+        .tabela-corpo-final {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+        }
+    </style>
 </head>
+
 <body>
-
     {% if bomba or combustivel or colaborador%}
-        <h6>Filtrado por:</h6>
+        <h6>
+            Filtrado por:
 
-        {% if bomba %}
-            <h6>Filtrado por: Bomba </h6>
-        {% endif %}
+            {% if bomba %}
+                Bomba N° {{ bomba.numero }}
+            {% endif %}
 
-        {% if combustivel %}
-            <h6>Filtrado por: Combustivel </h6>
-        {% endif %}
+            {% if combustivel %}
+                <h6>Filtrado por: Combustivel </h6>
+            {% endif %}
 
-        {% if colaborador %}
-            <h6>Filtrado por: Colaborador </h6>
-        {% endif %}
+            {% if colaborador %}
+                <h6>Filtrado por: Colaborador </h6>
+            {% endif %}
 
-        {% if bomba and combustivel %}
-            <h6>Filtrado por: Bomba e Combustível </h6>
-        {% endif %}
+            {% if bomba and combustivel %}
+                <h6>Filtrado por: Bomba e Combustível </h6>
+            {% endif %}
 
-        {% if bomba and colaborador %}
-            <h6>Filtrado por: Bomba e Colaborador </h6>
-        {% endif %}
+            {% if bomba and colaborador %}
+                <h6>Filtrado por: Bomba e Colaborador </h6>
+            {% endif %}
 
-        {% if bomba and combustivel and colaborador%}
-            <h6>Filtrado por: Bomba, Combustível e Colaborador </h6>
-        {% endif %}
+            {% if bomba and combustivel and colaborador%}
+                <h6>Filtrado por: Bomba, Combustível e Colaborador </h6>
+            {% endif %}
 
-        {% if combustivel and colaborador %}
-            <h6>Filtrado por: Colaborador e Combustível </h6>
-        {% endif %}
+            {% if combustivel and colaborador %}
+                <h6>Filtrado por: Colaborador e Combustível </h6>
+            {% endif %}
+        </h6>
 
     {% endif %}
     <table id="tabela">
@@ -57,11 +89,15 @@
                         <td class="tabela-corpo">{{ abastecimento.combustivel.get_tipo_de_combustivel_display }}</td>
                         <td class="tabela-corpo">{{ abastecimento.colaborador.nome }}</td>
                         <td class="tabela-corpo">{{ abastecimento.litros_abastecido }}</td>
-                        <td class="tabela-corpo">{{ abastecimento.valor_total_display }}</td>
+                        <td class="tabela-corpo-final">{{ abastecimento.valor_total_display }}</td>
                     </tr>
-            {% empty %}
-        {#        <h3>Não há Colaboradores relacionados ao posto escolhido.</h3>#}
             {% endfor %}
+            <tr>
+                <div>
+                    <td class="tabela-corpo-total-combustivel"></td>
+                    <td class="tabela-corpo-total-valor"></td>
+                </div>
+            </tr>
         </tbody>
     </table>
 </body>

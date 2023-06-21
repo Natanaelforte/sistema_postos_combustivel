@@ -3,7 +3,28 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="{% static 'abastecimento/style_footer_pdf.css' %}">
+        <style>
+            .rodape{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                border-top: 1px solid black;
+            }
+
+            .rodape-card {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 15px;
+            }
+
+            .row-rodape {
+                font-weight: bold;
+                font-size: 12px;
+                margin: 5px;}
+        </style>
     </head>
     <body>
         <div class="rodape">

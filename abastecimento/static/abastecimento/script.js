@@ -132,22 +132,11 @@ function carregarValor() {
 }
 
 function gerarRelatorio() {
-    $.ajax({
-        url: urlBuscarRelatorio,
-        type: 'GET',
-        data: {
-            bomba: $('#card-campo-bomba').val(),
-            combustivel: $('#card-campo-combustivel').val(),
-            colaborador: $('#card-campo-colaborador').val(),
-        },
-        success: function (data) {
-            if (data.resposta == 'sim') {
-                $(document).window.open(data.relatrorio);
-            } else {
-                alert(dados.mensagem)
-            }
-        }
-    })
+    var bomba =$('#card-campo-bomba').val()
+    var combustivel =$('#card-campo-combustivel').val()
+    var colaborador =$('#card-campo-colaborador').val()
+    window.open(`${urlBuscarRelatorio}?bomba=${bomba}&combustivel=${combustivel}&colaborador=${colaborador}`,
+        '_blank');
 }
 
 $(document).ready(function() {
