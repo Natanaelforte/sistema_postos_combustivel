@@ -10,7 +10,7 @@
         }
 
         .cabecalho-tabela {
-            width: 295px;
+            width: 250px;
             border: 2px solid black;
             border-collapse: collapse;
 
@@ -61,7 +61,7 @@
         }
 
         .tabela-total {
-            width: 295px;
+            width: 250px;
             border: 2px solid black;
             border-collapse: collapse;
         }
@@ -76,38 +76,31 @@
 
 <body>
     {% if bomba or combustivel or colaborador%}
-        <h6>
+        <h4>
             Filtrado por:
 
             {% if bomba %}
                 Bomba N° {{ bomba.numero }}
+                {% elif bomba and combustivel %}
+                    Bomba N° {{ bomba.numero }} e Combustível - {{ combustivel.combustivel_tipo }}
+                {% elif bomba and colaborador %}
+                    Bomba N° {{ bomba.numero }} e Colaborador - {{ colaborador.nome }}
+                {% elif bomba and combustivel and colaborador%}
+                    Bomba N° {{ bomba.numero }} , Combustível - {{ combustivel.combustivel_tipo }} e
+                    Colaborador - {{ colaborador.nome }}
             {% endif %}
 
             {% if combustivel %}
-                <h6>Filtrado por: Combustivel </h6>
+                Combustível - {{ combustivel.combustivel_tipo }}
+                {% elif combustivel and colaborador %}
+                    Combustível - {{ combustivel.combustivel_tipo }} e Colaborador - {{ colaborador.nome }}
             {% endif %}
 
             {% if colaborador %}
-                <h6>Filtrado por: Colaborador </h6>
+                Colaborador - {{ colaborador.nome }}
             {% endif %}
 
-            {% if bomba and combustivel %}
-                <h6>Filtrado por: Bomba e Combustível </h6>
-            {% endif %}
-
-            {% if bomba and colaborador %}
-                <h6>Filtrado por: Bomba e Colaborador </h6>
-            {% endif %}
-
-            {% if bomba and combustivel and colaborador%}
-                <h6>Filtrado por: Bomba, Combustível e Colaborador </h6>
-            {% endif %}
-
-            {% if combustivel and colaborador %}
-                <h6>Filtrado por: Colaborador e Combustível </h6>
-            {% endif %}
-        </h6>
-
+        </h4>
     {% endif %}
     <table id="tabela">
         <thead>

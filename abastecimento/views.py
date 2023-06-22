@@ -205,7 +205,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
 
         return f'R$ {total_valor:.2f}'
 
-
     def calculo_total_litros(self):
         abastecimentos = self.get_queryset()
         total_litros = float(0)
@@ -215,7 +214,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
                 total_litros += float(abastecimento.litros_abastecido)
 
         return f' {total_litros:.2f}'
-
 
     def get_response(self, context):
 
