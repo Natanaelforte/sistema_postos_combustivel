@@ -175,7 +175,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
             return instance
 
     def get_queryset(self):
-
         queryset = super().get_queryset()
 
         bomba_id = self._try_get_param('bomba')
@@ -216,7 +215,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
         return f' {total_litros:.2f}'
 
     def get_response(self, context):
-
         html = render_to_string(self.template_name, context)
 
         html_header_str = render_to_string('abastecimento/relatorio_pdf/header.html', context)
@@ -229,14 +227,15 @@ class AbastecimentoRelatorioPdf(TableBaseView):
         html_footer_file.write(html_footer_str.encode('utf8'))
         html_footer_file.seek(0)
 
-        report_pdf = pydf.generate_pdf(html,
-                                       page_size='A4',
-                                       orientation='portrait',
-                                       margin_left='20mm',
-                                       margin_right='5mm',
-                                       header_html=html_header_file.name,
-                                       footer_html=html_footer_file.name,
-                                       )
+        report_pdf = pydf.generate_pdf(
+            html,
+            page_size='A4',
+            orientation='portrait',
+            margin_left='20mm',
+            margin_right='5mm',
+            header_html=html_header_file.name,
+            footer_html=html_footer_file.name
+        )
 
         response = HttpResponse(report_pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'inline; filename="relatório-abastecimento.pdf"'
@@ -244,7 +243,6 @@ class AbastecimentoRelatorioPdf(TableBaseView):
         return response
 
     def context_create(self):
-
         quetyset = self.get_queryset()
 
         bomba_id = self._try_get_param('bomba')
@@ -263,6 +261,7 @@ class AbastecimentoRelatorioPdf(TableBaseView):
             'total_litros': self.calculo_total_litros(),
             'total_valor': self.calculo_total_valor()
         }
+
         return context
 
     def get(self, request, *args, **kwargs):
