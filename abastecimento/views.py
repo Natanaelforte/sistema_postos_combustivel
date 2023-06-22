@@ -195,6 +195,28 @@ class AbastecimentoRelatorioPdf(TableBaseView):
 
         return queryset
 
+    def calculo_total_valor(self):
+        abastecimentos = self.get_queryset()
+        total_valor = float(0)
+
+        if abastecimentos.exists():
+            for abastecimento in abastecimentos:
+                total_valor += float(abastecimento.calculate_valor_total())
+
+        return f'R$ {total_valor:.2f}'
+
+
+    def calculo_total_litros(self):
+        abastecimentos = self.get_queryset()
+        total_litros = float(0)
+
+        if abastecimentos.exists():
+            for abastecimento in abastecimentos:
+                total_litros += float(abastecimento.litros_abastecido)
+
+        return f' {total_litros:.2f}'
+
+
     def get_response(self, context):
 
         html = render_to_string(self.template_name, context)
@@ -239,7 +261,9 @@ class AbastecimentoRelatorioPdf(TableBaseView):
             'bomba': bomba,
             'combustivel': combustivel,
             'colaborador': colaborador,
-            'abastecimentos': quetyset
+            'abastecimentos': quetyset,
+            'total_litros': self.calculo_total_litros(),
+            'total_valor': self.calculo_total_valor()
         }
         return context
 

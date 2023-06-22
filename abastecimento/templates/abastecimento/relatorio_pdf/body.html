@@ -25,6 +25,14 @@
             padding: 5px;
             border-bottom: 1px solid black;
             border-left: 1px solid black;
+            text-align: right;
+        }
+
+        .tabela-corpo-bomba {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            text-align: center;
         }
 
         .tabela-corpo-final {
@@ -32,6 +40,36 @@
             border-bottom: 1px solid black;
             border-right: 1px solid black;
             border-left: 1px solid black;
+            text-align: right;
+        }
+
+        .tabela-corpo-total-combustivel {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .tabela-corpo-total-valor {
+            padding: 5px;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .tabela-total {
+            width: 295px;
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        .div-total {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
         }
     </style>
 </head>
@@ -85,7 +123,7 @@
         <tbody>
             {% for abastecimento in abastecimentos %}
                     <tr class="tabela-corpo-linha">
-                        <td class="tabela-corpo">{{ abastecimento.bomba.NumeroBombaMascara }}</td>
+                        <td class="tabela-corpo-bomba">{{ abastecimento.bomba.NumeroBombaMascara }}</td>
                         <td class="tabela-corpo">{{ abastecimento.combustivel.get_tipo_de_combustivel_display }}</td>
                         <td class="tabela-corpo">{{ abastecimento.colaborador.nome }}</td>
                         <td class="tabela-corpo">{{ abastecimento.litros_abastecido }}</td>
@@ -93,9 +131,10 @@
                     </tr>
             {% endfor %}
             <tr>
-                <div>
-                    <td class="tabela-corpo-total-combustivel"></td>
-                    <td class="tabela-corpo-total-valor"></td>
+                <div class="div-total">
+                    <th class="tabela-total" colspan="3">Total</th>
+                    <td class="tabela-corpo-total-combustivel">{{ total_litros }}</td>
+                    <td class="tabela-corpo-total-valor">{{ total_valor }}</td>
                 </div>
             </tr>
         </tbody>
