@@ -1,7 +1,7 @@
-def _try_get_param(self, param_name):
+def _try_get_param(param_name, request):
     try:
         if param_name:
-            parametro = self.request.GET.get(param_name)
+            parametro = request.GET.get(param_name)
 
             if parametro and parametro == 'null':
                 return None

@@ -6,6 +6,7 @@ import pydf
 
 from abastecimento.forms import AbastecimentoForm
 from abastecimento.models import Abastecimento
+from abastecimento.utils import utils
 from base.views import ListBaseView, UpdateBaseView, ActionBaseView, TableBaseView
 from bomba_de_combustivel.models import Bomba
 from colaborador.models import Colaborador
@@ -78,27 +79,23 @@ class AbastecimentoTableView(TableBaseView):
     model = Abastecimento
     template_name = 'abastecimento/table.html'
 
-    def _try_get_param(self, param_name):
-        try:
-           return self.request.GET.get(param_name)
-        except:
-            pass
 
     def get_queryset(self):
+        request = self.request
 
         queryset = super().get_queryset()
 
-        bomba_id = self._try_get_param('bomba')
+        bomba_id = utils._try_get_param(param_name='bomba', request=request)
 
         if bomba_id:
             queryset = queryset.filter(bomba__id=bomba_id)
 
-        combustivel_id = self._try_get_param('combustivel')
+        combustivel_id = utils._try_get_param(param_name='combustivel', request=request)
 
         if combustivel_id:
             queryset = queryset.filter(combustivel_id=combustivel_id)
 
-        colaborador_id = self._try_get_param('colaborador')
+        colaborador_id = utils._try_get_param(param_name='colaborador', request=request)
 
         if colaborador_id:
             queryset = queryset.filter(colaborador_id=colaborador_id)
@@ -112,15 +109,17 @@ class AbastecimentoValorTotal(ActionBaseView):
 
     def _try_get_param(self, param_name):
         try:
-           return self.request.POST.get(param_name)
-        except:
-            raise Exception(f'{param_name.title()} não informada.')
+            if param_name:
+                parametro = self.request.POST.get(param_name)
 
-    def _try_get_instance(self, class_name, pk):
-        try:
-            return class_name.objects.get(pk=pk)
+                if parametro and parametro == 'null':
+                    return None
+
+                return parametro
+            else:
+                return None
         except:
-            raise Exception(f'{class_name} ou {pk}, não informados.')
+            pass
 
     def calcular_valor(self, valor_vigente, litros):
         valor = valor_vigente * litros
@@ -128,11 +127,13 @@ class AbastecimentoValorTotal(ActionBaseView):
         return valor
 
     def post(self, request, *args, **kwargs):
+
         data = {}
         combustivel_id = self._try_get_param('combustivel')
-        combustivel = self._try_get_instance(Combustivel, combustivel_id)
+        combustivel = utils._try_get_instance(class_name=Combustivel, pk=combustivel_id)
 
-        valor_vigente = float(combustivel.valor_vigente)
+        valor_vigente = combustivel.valor_vigente
+        valor_vigente = float(valor_vigente)
 
         litros = self.request.POST.get('litros', 0)
         litros = float(litros)
@@ -154,42 +155,22 @@ class AbastecimentoRelatorioPdf(TableBaseView):
     model = Abastecimento
     template_name = 'abastecimento/relatorio_pdf/body.html'
 
-    def _try_get_param(self, param_name):
-        try:
-            if param_name:
-                parametro = self.request.GET.get(param_name)
-
-                if parametro and parametro == 'null':
-                    return None
-
-                return parametro
-            else:
-                return None
-        except:
-            pass
-
-    def _try_get_instance(self, class_name, pk):
-        try:
-            instance = class_name.objects.get(pk=pk)
-            return instance
-        except:
-            instance = None
-            return instance
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        request = self.request
 
-        bomba_id = self._try_get_param('bomba')
+        bomba_id = utils._try_get_param(param_name='bomba', request=request)
 
         if bomba_id:
             queryset = queryset.filter(bomba__id=bomba_id)
 
-        combustivel_id = self._try_get_param('combustivel')
+        combustivel_id = utils._try_get_param(param_name='combustivel', request=request)
 
         if combustivel_id:
             queryset = queryset.filter(combustivel_id=combustivel_id)
 
-        colaborador_id = self._try_get_param('colaborador')
+        colaborador_id = utils._try_get_param(param_name='colaborador', request=request)
 
         if colaborador_id:
             queryset = queryset.filter(colaborador_id=colaborador_id)
@@ -246,14 +227,15 @@ class AbastecimentoRelatorioPdf(TableBaseView):
 
     def context_create(self):
         quetyset = self.get_queryset()
+        request = self.request
 
-        bomba_id = self._try_get_param('bomba')
-        combustivel_id = self._try_get_param('combustivel')
-        colaborador_id = self._try_get_param('colaborador')
+        bomba_id = utils._try_get_param(param_name='bomba', request=request)
+        combustivel_id = utils._try_get_param(param_name='combustivel', request=request)
+        colaborador_id = utils._try_get_param(param_name='colaborador', request=request)
 
-        bomba = self._try_get_instance(Bomba, bomba_id)
-        combustivel = self._try_get_instance(Combustivel, combustivel_id)
-        colaborador = self._try_get_instance(Colaborador, colaborador_id)
+        bomba = utils._try_get_instance(class_name=Bomba, pk=bomba_id)
+        combustivel = utils._try_get_instance(class_name=Combustivel, pk=combustivel_id)
+        colaborador = utils._try_get_instance(class_name=Colaborador, pk=colaborador_id)
 
         context = {
             'bomba': bomba,

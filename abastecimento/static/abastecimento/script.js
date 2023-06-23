@@ -87,6 +87,7 @@ function CriarAbastecimento() {
         success: function (dados) {
             if (dados.resposta === 'sim') {
                 $('#card-campo-litros').val(0);
+                $('#valor-total').html('Total: R$ 0,00')
                 carregarTabela();
             } else {
                 alert(dados.mensagem)
