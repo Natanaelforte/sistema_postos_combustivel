@@ -44,6 +44,7 @@ a:-webkit-any-link {
     padding: 10px;
     background-color: #04f87c;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .cabecalho-app-bomba-novo {
@@ -59,6 +60,7 @@ a:-webkit-any-link {
     padding: 10px;
     background-color: #0c3ffc;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .tabela-div {
@@ -90,6 +92,7 @@ a:-webkit-any-link {
     background-color: #0c3ffc;
     color: white;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .card-tabela {
@@ -124,6 +127,7 @@ a:-webkit-any-link {
     padding: 2px;
     background-color: #04f87c;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .botao-acao-excluir {
@@ -139,6 +143,7 @@ a:-webkit-any-link {
     padding: 2px;
     background-color: #ff0000;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 table {

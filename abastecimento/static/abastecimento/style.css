@@ -63,6 +63,7 @@
     background-color: #0c3ffc;
     color: white;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .cabecalho-app-botao-inicio {
@@ -98,6 +99,7 @@
     background-color: #fdfd19;
     color: black!important;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .card-campo-bomba {

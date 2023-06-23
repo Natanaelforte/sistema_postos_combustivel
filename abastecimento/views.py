@@ -17,6 +17,21 @@ class AbastecimentoListView(ListBaseView):
     template_name = 'abastecimento/list.html'
 
 
+class AbastecimentoUpdateView(UpdateBaseView):
+    model = Abastecimento
+    form_class = AbastecimentoForm
+    template_name = 'abastecimento/update.html'
+
+    def get_success_url(self):
+        return reverse('abastecimento:list')
+
+
+class AbastecimentoDeleteView(DeleteView):
+    model = Abastecimento
+    template_name = 'abastecimento/delete.html'
+    success_url = reverse_lazy("abastecimento:list")
+
+
 class AbastecimentoAbastecerView(ActionBaseView):
     model = Abastecimento
 
@@ -47,28 +62,16 @@ class AbastecimentoAbastecerView(ActionBaseView):
 
         try:
             Abastecimento.objects.create(
-                bomba=bomba, combustivel=combustivel, colaborador=colaborador, litros_abastecido=litros_abastecido,
+                bomba=bomba,
+                combustivel=combustivel,
+                colaborador=colaborador,
+                litros_abastecido=litros_abastecido,
                 posto=posto
             )
         except Exception as e:
             print(str(e))
 
             raise Exception('Não foi possivel criar o abastecimento.')
-
-
-class AbastecimentoUpdateView(UpdateBaseView):
-    model = Abastecimento
-    form_class = AbastecimentoForm
-    template_name = 'abastecimento/update.html'
-
-    def get_success_url(self):
-        return reverse('abastecimento:list')
-
-
-class AbastecimentoDeleteView(DeleteView):
-    model = Abastecimento
-    template_name = 'abastecimento/delete.html'
-    success_url = reverse_lazy("abastecimento:list")
 
 
 class AbastecimentoTableView(TableBaseView):
@@ -129,8 +132,7 @@ class AbastecimentoValorTotal(ActionBaseView):
         combustivel_id = self._try_get_param('combustivel')
         combustivel = self._try_get_instance(Combustivel, combustivel_id)
 
-        valor_vigente = combustivel.valor_vigente
-        valor_vigente = float(valor_vigente)
+        valor_vigente = float(combustivel.valor_vigente)
 
         litros = self.request.POST.get('litros', 0)
         litros = float(litros)

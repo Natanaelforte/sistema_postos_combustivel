@@ -72,6 +72,7 @@ input[type="submit" i] {
     margin-left: 100px;
     margin-top: 20px;
 
+
 }
 
 input[type="submit" i]:hover {
@@ -80,7 +81,7 @@ input[type="submit" i]:hover {
     white-space: pre;
     align-items: center;
     text-align: center;
-    cursor: default;
+    cursor: pointer;
     box-sizing: border-box;
     background-color: #17f371;
     color: #050505;

@@ -93,7 +93,7 @@ input[type="submit" i]:hover {
     white-space: pre;
     align-items: center;
     text-align: center;
-    cursor: default;
+    cursor: pointer;
     box-sizing: border-box;
     background-color: #0c3ffc;
     color: white;
