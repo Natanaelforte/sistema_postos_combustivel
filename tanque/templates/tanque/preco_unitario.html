@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form>
+{% csrf_token %}
+    <p id="preco-unitario"></p>
+    <input type="submit" onclick="pegarValorUnitario()">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script type="application/javascript" src="{% static 'tanque/script_preco_unitario.js' %}"></script>
+<script>
+    var urlPrecoBuscar = "{% url 'tanque:preco-unitario' %}"
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+</script>
+
+</body>
+</html>
