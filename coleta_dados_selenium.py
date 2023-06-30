@@ -3,65 +3,112 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.chrome.options import Options
 
 from bs4 import BeautifulSoup
 
 
 def get_dict_item(page_item):
     soup = BeautifulSoup(page_item, 'html.parser')
-    dict_item = {}
+
+    text_situacao = None
+    text_cpf_cnpj = None
+    text_nome = None
+    text_sequencial = None
+    text_codigo_material = None
+    text_desc_material = None
+    text_quantidade = None
+    text_marca = None
+    text_unidade = None
+    text_preco_unidade = None
+    text_valor_total = None
+
 
     elements_trs = soup.find('form', {"id": "form1"}).find('table', class_='tex3').find_all('tr')
     for element_tr in elements_trs:
         elements_tds = element_tr.find_all('td')
         for td in elements_tds:
-            if 'Modalidade' in td.text:
-                dict_item.update({'modalidade': td.find_all('span')[-1].text.strip()})
-                # if not td.find('span', class_='tex3'):
-                #     dict_item.update({'modalidade': td.find('span', class_='mensagem').text.strip()})
-            elif 'Número da Licitação:' in td.text:
-                dict_item.update({'numero_licitacao': td.find_all('span')[-1].text.strip()})
-            elif 'Situação:' in td.text:
-                dict_item.update({'situacao': td.find_all('span')[-1].text.strip()})
+            if 'Situação:' in td.text:
+                text_situacao = td.find_all('span')[-1].text.strip()
             elif 'CNPJ/CPF:' in td.text:
-                dict_item.update({'cpf_cnpj': td.find_all('span')[-1].text.strip()})
+                text_cpf_cnpj = td.find_all('span')[-1].text.strip()
             elif 'Razão Social/Nome:' in td.text:
-                dict_item.update({'razao_social_nome': td.find_all('span')[-1].text.strip()})
+                text_nome = td.find_all('span')[-1].text.strip()
             elif 'Item da Licitação:' in td.text:
-                dict_item.update({'item_licitacao': td.find_all('span')[-1].text.strip()})
+                text_sequencial = td.find_all('span')[-1].text.strip()
             elif 'Cod. do' in td.text:
-                dict_item.update({'cod_do_conjunto_material': td.find_all('span')[-1].text.strip()})
+                text_codigo_material = td.find_all('span')[-1].text.strip()
             elif 'Identificação' in td.text:
-                dict_item.update({'identificacao_conjunto_material': td.find_all('span')[-1].text.strip()})
-            elif 'Descrição Detalhada do' in td.text:
-                dict_item.update({'descricao_detalhada-material': td.find_all('span')[-1].text.strip()})
+                text_desc_material = td.find_all('span')[-1].text.strip()
             elif 'Quantidade:' in td.text:
-                dict_item.update({'quantidade': td.find_all('span')[-1].text.strip()})
+                text_quantidade = td.find_all('span')[-1].text.strip()
             elif 'Marca:' in td.text:
-                dict_item.update({'marca': td.find_all('span')[-1].text.strip()})
+                text_marca = td.find_all('span')[-1].text.strip()
             elif 'Unidade:' in td.text:
-                dict_item.update({'unidade': td.find_all('span')[-1].text.strip()})
+                text_unidade = td.find_all('span')[-1].text.strip()
             elif 'Preço Unitário:' in td.text:
-                dict_item.update({'preco_unitario': td.find_all('span')[-1].text.strip()})
+                text_preco_unidade = td.find_all('span')[-1].text.strip()
             elif 'Valor Total:' in td.text:
-                dict_item.update({'valor_total': td.find_all('span')[-1].text.strip()})
+                text_valor_total = td.find_all('span')[-1].text.strip()
 
+    dict_item = {
 
+        "situacao": text_situacao,
+        "fornecedor": {
+            "identificador": text_cpf_cnpj,
+            "nome": text_nome
+        },
+        "sequencial": int(text_sequencial),
+        "material": {
+            "codigo": text_codigo_material,
+            "descricao": text_desc_material,
+        },
+        "quantidade": float(text_quantidade),
+        "marca": text_marca,
+        "unidade": text_unidade,
+        "preco_unitario": float(text_preco_unidade.replace(',', '.')),
+        "valor_total": float(text_valor_total.replace('.', '').replace(',', '.'))
+
+    }
     return dict_item
 
+
 def get_dict_licitacao(soup):
-    tags_tr = soup.find('form', {"id": "form1"}).find_all('tr')[:3]
+    tags_tr = soup.find('form', {"id": "form1"}).find_all('tr')[:4]
+
+    text_orgao = tags_tr[0].find('td', class_='tex3').get_text().strip()
+    text_uasg = tags_tr[1].find('td', class_='tex3').get_text().strip()
+    text_modalidade = tags_tr[2].find('td', class_='tex3').get_text().strip()
+    text_numero = tags_tr[3].find('td', class_='tex3').get_text().strip()
     return {
-        'orgao': tags_tr[0].find('td', class_='tex3').get_text().strip(),
-        'uasg': tags_tr[1].find('td', class_='tex3').get_text().strip(),
+        'licitacao': {
+            'modalidade': {
+                "codigo": text_modalidade.split('-')[0],
+                "descricao": text_modalidade.split('-')[1]
+            },
+            'numero': text_numero
+        },
+        'orgao': {
+            'codigo': text_orgao.split('-')[0],
+            'descricao': text_orgao.split('-')[1],
+        },
+        'uasg': {
+            'codigo': text_uasg.split('-')[0],
+            'descricao': text_uasg.split('-')[1],
+        },
         'itens': []
     }
 
 
 def coletar_dados_licitacao(uasg, data_numero):
 
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+
     # acessar pagina no compranet.
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(chrome_options)
     driver.get('http://comprasnet.gov.br/livre/Resultado/conrelit00.asp')
     driver.implicitly_wait(0.5)
 
@@ -91,7 +138,6 @@ def coletar_dados_licitacao(uasg, data_numero):
 
     page_item = driver.page_source
     soup = BeautifulSoup(page_item, 'html.parser')
-
 
     dict_certame = get_dict_licitacao(soup)
 
