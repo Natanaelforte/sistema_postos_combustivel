@@ -11,17 +11,18 @@ from bs4 import BeautifulSoup
 def get_dict_item(page_item):
     soup = BeautifulSoup(page_item, 'html.parser')
 
-    text_situacao = None
-    text_cpf_cnpj = None
-    text_nome = None
-    text_sequencial = None
-    text_codigo_material = None
-    text_desc_material = None
-    text_quantidade = None
-    text_marca = None
-    text_unidade = None
-    text_preco_unidade = None
-    text_valor_total = None
+    text_situacao = ''
+    text_cpf_cnpj = ''
+    text_nome = ''
+    text_sequencial = ''
+    text_codigo_material = ''
+    text_desc_material = ''
+    text_quantidade = ''
+    text_marca = ''
+    text_unidade = ''
+    text_preco_unidade = ''
+    text_valor_total = ''
+    text_desc_det_material = ''
 
 
     elements_trs = soup.find('form', {"id": "form1"}).find('table', class_='tex3').find_all('tr')
@@ -30,43 +31,70 @@ def get_dict_item(page_item):
         for td in elements_tds:
             if 'Situação:' in td.text:
                 text_situacao = td.find_all('span')[-1].text.strip()
+                if not text_situacao:
+                    text_situacao = ''
             elif 'CNPJ/CPF:' in td.text:
                 text_cpf_cnpj = td.find_all('span')[-1].text.strip()
+                if not text_cpf_cnpj:
+                    text_cpf_cnpj = ''
             elif 'Razão Social/Nome:' in td.text:
                 text_nome = td.find_all('span')[-1].text.strip()
+                if not text_nome:
+                    text_nome = ''
             elif 'Item da Licitação:' in td.text:
                 text_sequencial = td.find_all('span')[-1].text.strip()
+                if not text_sequencial:
+                    text_sequencial = ''
             elif 'Cod. do' in td.text:
                 text_codigo_material = td.find_all('span')[-1].text.strip()
+                if not text_codigo_material:
+                    text_codigo_material = ''
             elif 'Identificação' in td.text:
                 text_desc_material = td.find_all('span')[-1].text.strip()
+                if not text_desc_material:
+                    text_desc_material = ''
             elif 'Quantidade:' in td.text:
                 text_quantidade = td.find_all('span')[-1].text.strip()
+                if not text_quantidade:
+                    text_quantidade = ''
             elif 'Marca:' in td.text:
                 text_marca = td.find_all('span')[-1].text.strip()
+                if not text_marca:
+                    text_marca = ''
             elif 'Unidade:' in td.text:
                 text_unidade = td.find_all('span')[-1].text.strip()
+                if not text_unidade:
+                    text_unidade = ''
             elif 'Preço Unitário:' in td.text:
                 text_preco_unidade = td.find_all('span')[-1].text.strip()
+                if not text_preco_unidade:
+                    text_preco_unidade = ''
             elif 'Valor Total:' in td.text:
                 text_valor_total = td.find_all('span')[-1].text.strip()
+                if not text_valor_total:
+                    text_valor_total = ''
+            elif 'Descrição Detalhada' in td.text:
+                text_desc_det_material = td.find_all('span')[-1].text
+                if not text_desc_det_material:
+                    text_desc_det_material = ''
 
     dict_item = {
 
         "situacao": text_situacao,
         "fornecedor": {
-            "identificador": text_cpf_cnpj,
+            "identificador": text_cpf_cnpj.replace('.','').replace('/','').replace('-',''),
             "nome": text_nome
         },
         "sequencial": int(text_sequencial),
         "material": {
             "codigo": text_codigo_material,
             "descricao": text_desc_material,
+            "especificacao": text_desc_det_material.strip()
         },
         "quantidade": float(text_quantidade),
         "marca": text_marca,
         "unidade": text_unidade,
-        "preco_unitario": float(text_preco_unidade.replace(',', '.')),
+        "preco_unitario": float(text_preco_unidade.replace('.', '').replace(',', '.')),
         "valor_total": float(text_valor_total.replace('.', '').replace(',', '.'))
 
     }
@@ -83,18 +111,18 @@ def get_dict_licitacao(soup):
     return {
         'licitacao': {
             'modalidade': {
-                "codigo": text_modalidade.split('-')[0],
-                "descricao": text_modalidade.split('-')[1]
+                "codigo": text_modalidade.split('-')[0].strip(),
+                "descricao": text_modalidade.split('-')[1].strip()
             },
             'numero': text_numero
         },
         'orgao': {
-            'codigo': text_orgao.split('-')[0],
-            'descricao': text_orgao.split('-')[1],
+            'codigo': text_orgao.split('-')[0].strip(),
+            'descricao': text_orgao.split('-')[1].strip(),
         },
         'uasg': {
-            'codigo': text_uasg.split('-')[0],
-            'descricao': text_uasg.split('-')[1],
+            'codigo': text_uasg.split('-')[0].strip(),
+            'descricao': text_uasg.split('-')[1].strip(),
         },
         'itens': []
     }
@@ -142,7 +170,6 @@ def coletar_dados_licitacao(uasg, data_numero):
     dict_certame = get_dict_licitacao(soup)
 
     campo_item = Select(driver.find_element(by=By.NAME, value="nu_no_item"))
-
 
     # lista de text options
     options_text = []
