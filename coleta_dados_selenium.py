@@ -9,8 +9,10 @@ from bs4 import BeautifulSoup
 
 
 def get_dict_item(page_item):
+    # criando o html da pagina requisitada
     soup = BeautifulSoup(page_item, 'html.parser')
 
+    # criando variaveis de string vazias
     text_situacao = ''
     text_cpf_cnpj = ''
     text_nome = ''
@@ -24,7 +26,7 @@ def get_dict_item(page_item):
     text_valor_total = ''
     text_desc_det_material = ''
 
-
+    # raspando os dados da pagina
     elements_trs = soup.find('form', {"id": "form1"}).find('table', class_='tex3').find_all('tr')
     for element_tr in elements_trs:
         elements_tds = element_tr.find_all('td')
@@ -78,6 +80,7 @@ def get_dict_item(page_item):
                 if not text_desc_det_material:
                     text_desc_det_material = ''
 
+    # setando os dados raspados no valor do dicionario
     dict_item = {
 
         "situacao": text_situacao,
@@ -130,6 +133,7 @@ def get_dict_licitacao(soup):
 
 def coletar_dados_licitacao(uasg, data_numero):
 
+    # setando o cromedrive para o driver rodar sem abrir o navegador
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -143,7 +147,7 @@ def coletar_dados_licitacao(uasg, data_numero):
     # setar dados do certame na pagina comprasnet
     campo_co_uasg = driver.find_element(by=By.NAME, value="co_uasg")
     campo_co_uasg.clear()
-    campo_co_uasg.send_keys(f'{uasg}') #943001
+    campo_co_uasg.send_keys(f'{uasg}')
 
     botao_ok = driver.find_element(by=By.NAME, value="ok")
     botao_ok.click()
@@ -153,7 +157,7 @@ def coletar_dados_licitacao(uasg, data_numero):
 
     campo_numero = driver.find_element(by=By.NAME, value="nu_aviso")
     campo_numero.clear()
-    campo_numero.send_keys(f'{data_numero}') #1102023
+    campo_numero.send_keys(f'{data_numero}')
 
     botao_ok2 = driver.find_element(by=By.NAME, value="ok2")
     botao_ok2.click()
@@ -164,11 +168,14 @@ def coletar_dados_licitacao(uasg, data_numero):
     botao_item.click()
     driver.implicitly_wait(0.7)
 
+    # pegando o sorce da pagina e criando o html com o beautiful soap
     page_item = driver.page_source
     soup = BeautifulSoup(page_item, 'html.parser')
 
+    # gerando o dicionario do certame
     dict_certame = get_dict_licitacao(soup)
 
+    # selecionando o campo com selenium
     campo_item = Select(driver.find_element(by=By.NAME, value="nu_no_item"))
 
     # lista de text options
@@ -188,6 +195,7 @@ def coletar_dados_licitacao(uasg, data_numero):
         botao_ok3 = driver.find_element(by=By.NAME, value="ok")
         botao_ok3.click()
 
+        # pegando o source da pagina do item
         page_item2 = driver.page_source
 
         # coletar dados, criar dicionario
