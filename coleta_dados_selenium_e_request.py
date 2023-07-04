@@ -167,7 +167,7 @@ def coletar_dados_licitacao(uasg, data_numero):
     # apertar botão item e ir para outra pagina
     botao_item = driver.find_element(by=By.NAME, value="itens")
     botao_item.click()
-    driver.implicitly_wait(0.7)
+    driver.implicitly_wait(0.3)
 
     # pegando o sorce da pagina e criando o html com o beautiful soap
     page_item = driver.page_source
