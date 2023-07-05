@@ -1,4 +1,3 @@
-
 import requests
 
 from unicodedata import normalize
@@ -48,6 +47,27 @@ class ColetarDadosComprasNet:
 
         return all_options
 
+    def del_numero_descricao(self, txt):
+        del_numero = []
+
+        for char in txt:
+            if char.isnumeric():
+                del_numero.append(char)
+            else:
+                break
+
+        numeros = del_numero
+
+        novo_txt = txt
+
+        for numero in numeros:
+            txt_replace = novo_txt.replace(f'{numero}', '')
+            novo_txt = txt_replace
+
+        teste = novo_txt
+
+        return novo_txt
+
     def get_dict_licitacao(self, texto):
         soup = BeautifulSoup(texto, 'html.parser')
 
@@ -62,22 +82,26 @@ class ColetarDadosComprasNet:
         text_uasg = tags_tr[1].find('td', class_='tex3').get_text().strip()
         text_modalidade = tags_tr[2].find('td', class_='tex3').get_text().strip()
         text_numero = tags_tr[3].find('td', class_='tex3').get_text().strip()
-        text_modalidade_normalise = normalize('NFKD', text_modalidade).encode('ASCII','ignore').decode('ASCII')
+
+        text_orgao_normalise = normalize('NFKD', text_orgao).encode('ASCII', 'ignore').decode('ASCII')
+        text_uasg_normalise = normalize('NFKD', text_uasg).encode('ASCII', 'ignore').decode('ASCII')
+        text_modalidade_normalise = normalize('NFKD', text_modalidade).encode('ASCII', 'ignore').decode('ASCII')
+
         return {
             'licitacao': {
                 'modalidade': {
-                    "codigo": text_modalidade.split('-')[0].strip().lower(),
+                    "codigo": text_modalidade_normalise.split('-')[0].strip().lower(),
                     "descricao": text_modalidade_normalise.split('-')[1].strip().lower()
                 },
                 'numero': text_numero.lower()
             },
             'orgao': {
-                'codigo': text_orgao.split('-')[0].strip().lower(),
-                'descricao': text_orgao.split('-')[1].strip().lower(),
+                'codigo': text_orgao_normalise.split('-')[0].strip().lower(),
+                'descricao': text_orgao_normalise.split('-')[1].strip().lower(),
             },
             'uasg': {
-                'codigo': text_uasg.split('-')[0].strip().lower(),
-                'descricao': text_uasg.split('-')[1].strip().lower(),
+                'codigo': text_uasg_normalise.split('-')[0].strip().lower(),
+                'descricao': text_uasg_normalise.split('-')[1].strip().lower(),
             },
             'itens': []
         }
@@ -154,19 +178,22 @@ class ColetarDadosComprasNet:
                     if not text_desc_det_material:
                         text_desc_det_material = ''
 
+        txt = text_desc_det_material.strip()
+        novo_text_desc_det_material = " ".join(self.del_numero_descricao(txt).split())
+
         # setando os dados raspados no valor do dicionario
         dict_item = {
 
             "situacao": text_situacao.lower(),
             "fornecedor": {
-                "identificador": text_cpf_cnpj.replace('.','').replace('/','').replace('-','').lower(),
+                "identificador": text_cpf_cnpj.replace('.', '').replace('/', '').replace('-', '').lower(),
                 "nome": text_nome.lower()
             },
             "sequencial": int(text_sequencial),
             "material": {
                 "codigo": text_codigo_material.lower(),
                 "descricao": text_desc_material.lower(),
-                "especificacao": text_desc_det_material.strip().lower()
+                "especificacao": novo_text_desc_det_material.strip().lower()
             },
             "quantidade": float(text_quantidade),
             "marca": text_marca.lower(),
@@ -282,7 +309,6 @@ class ColetarDadosComprasNet:
         response = self._try_fazer_requisicao(url_post, url_get, data_payload, headers_post, headers_get)
 
         if response.status_code == int(500):
-
             response = self._try_fazer_requisicao(url_post4, url_get4, data_payload, headers_post, headers_get)
 
         return response.text
@@ -353,6 +379,6 @@ class ColetarDadosComprasNet:
             except:
                 print(f'Não coletou os dados do {item}')
 
-        print(dict_certame)
+        # print(dict_certame)
 
         return dict_certame
